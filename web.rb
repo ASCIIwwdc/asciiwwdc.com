@@ -26,7 +26,7 @@ class Web < Sinatra::Base
   before do
     @query = Rack::Utils.escape_html(params[:q]) if params[:q]
   end
-  
+
   get '/' do
     @sessions = Session.order(:year, :number).all
 

@@ -9,21 +9,21 @@ class Session < Sequel::Model
     query = Session.db.literal(query.to_s + ":*")
 
     Session.db[%{
-      SELECT title, description, year, number, 
+      SELECT title, description, year, number,
              ts_rank_cd(
               (
-                setweight(to_tsvector(title), 'A') || 
-                setweight(to_tsvector(description), 'C') || 
+                setweight(to_tsvector(title), 'A') ||
+                setweight(to_tsvector(description), 'C') ||
                 setweight(tsv, 'D')
               ),
               plainto_tsquery('english', #{query})
-             ) AS rank, 
+             ) AS rank,
              ts_headline(
-              'pg_catalog.english', transcript, plainto_tsquery('english', #{query}), 
+              'pg_catalog.english', transcript, plainto_tsquery('english', #{query}),
               'ShortWord=0, MinWords=50, MaxWords=70'
-             ) AS excerpt 
-             FROM sessions 
-             WHERE tsv @@ plainto_tsquery('english', #{query}) 
+             ) AS excerpt
+             FROM sessions
+             WHERE tsv @@ plainto_tsquery('english', #{query})
              ORDER BY rank DESC
     }].collect{|result| OpenStruct.new(result)}
   end
