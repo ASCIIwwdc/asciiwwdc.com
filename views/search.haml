@@ -1,0 +1,10 @@
+%article#search-results
+  %header
+    %h1= "#{@sessions.count} #{@sessions.count == 1 ? "Result" : "Results"} for '#{@query}'"
+
+  %dl
+    - for session in @sessions
+      %dt{data: {rank: session.rank}, id: "session-#{session.number}"}
+        %a{href: url(session) + "?q=#{@query}"}= session.title
+      %dd
+        %blockquote= session.excerpt

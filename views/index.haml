@@ -1,0 +1,13 @@
+- content_for :header do
+  %hgroup
+    :markdown
+      # Searchable full-text transcripts of WWDC sessions
+      ## Find the content you've been looking for, without having to scrub through session videos
+
+  %form#search{method: 'GET', action: '/search'}
+    %input{type: 'search', name: 'q', value: @query, placeholder: "Search for WWDC Sessions..."}
+    %label
+      :markdown
+        Examples: [UIView](/search?q=UIView), [Accelerate](/search?q=Accelerate), [Map Kit](/search?q=Map+Kit), [Bluetooth](/search?q=Bluetooth), [NSHipster](/search?q=NSHipster)
+
+= haml :'years/_2013'

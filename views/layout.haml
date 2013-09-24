@@ -1,0 +1,60 @@
+!!! 5
+%html{lang: "en"}
+  %head
+    %meta{charset: "utf-8"}
+    %title
+      - if @session
+        = title("ASCIIwwdc", (@session.title rescue nil))
+      - else 
+        ASCIIwwdc - Searchable full-text transcripts of WWDC sessions
+
+    %meta{name: "author", content: "Mattt Thompson"}
+    %meta{name: "description", content: "Find the content you've been looking for, without having to scrub through session videos."}
+    %link{rel: "stylesheet", type: 'text/css', href: "/css/screen.css", media: "screen", charset: "utf-8"}
+
+    %meta{property: "og:site_name", content: "ASCIIwwdc"}
+    %meta{property: "og:title", content: title("ASCIIwwdc", (@session.title rescue nil))}
+    %meta{property: "og:url", content: "http://asciiwwdc.com"}
+    %meta{property: "og:description", content: ""}
+
+    - if @session
+      %link{rel: "alternate", type: 'application/json', href: url(@session), charset: "utf-8"}
+      %link{rel: "alternate", type: 'text/vtt', href: url(@session), charset: "utf-8"}
+
+  %body
+    %header{role: 'banner'}
+      %div{role: 'container'}
+        %span#logo
+          %a{href: '/'} ASCIIwwdc
+
+        - unless request.path == '/'
+          %form#search{method: 'GET', action: '/search'}
+            %input{type: 'search', name: 'q', value: @query, placeholder: "Search for WWDC Sessions..."}
+
+        = yield_content :header
+
+    .content
+      %div{role: 'container'}
+        = yield
+
+    %footer
+      %div{role: 'container'}
+        #about
+          %strong.logo ASCIIwwdc
+
+          :markdown
+            Searchable full-text transcripts of WWDC sessions.
+
+        #colophon
+          :markdown
+            Created by normalizing and indexing video transcript (`.srt`) files provided for WWDC videos. Check out the app's [source code on GitHub](https://github.com/mattt/asciiwwdc.com) for additional implementation details, as well as information about the webservice APIs made available. 
+
+            Built on [Sinatra](http://www.sinatrarb.com). Powered by [Heroku](https://www.heroku.com) and [Heroku Postgres](https://postgres.heroku.com).
+
+        #copyright
+          :markdown
+            All content copyright © 2013 Apple Inc. All rights reserved.
+
+        #credits
+          :markdown
+            Created by [Mattt Thompson](https://github.com/mattt).

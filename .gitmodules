@@ -1,0 +1,3 @@
+[submodule "data"]
+	path = data
+	url = git@github.com:mattt/wwdc-session-transcripts.git

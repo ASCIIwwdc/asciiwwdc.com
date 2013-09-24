@@ -1,0 +1,9 @@
+%article.session{id: "session-#{@session.number}"}
+  %header
+    %h1
+      %span.title= @session.title
+      %a{href: video_url(@session)} 
+    %h2.description= @session.description
+
+  %section.transcript
+    = @session.markup
