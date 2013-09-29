@@ -16,6 +16,7 @@ $ wwdc info 228
 
 - [Alfred Web Search](https://gist.github.com/mattt/6756058)
 - [DEVONagent Plugin](https://github.com/annard/DEVONagent-Plugins)
+- [Quix Plugin](https://github.com/rydermackay/quixconfig/blob/master/config.txt)
 
 ## Webservice APIs
 
