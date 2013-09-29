@@ -13,6 +13,7 @@ require './lib/models/session'
 namespace :db do
   task :seed do
     Dir["data/*"].each do |directory|
+      next unless File.directory? directory
       year = Integer(directory.split(/\//).last)
 
       YAML.load(File.open(File.join(directory, "_sessions.yml"))).each do |number, attributes|
