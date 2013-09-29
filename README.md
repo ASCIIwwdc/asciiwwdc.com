@@ -14,7 +14,7 @@ $ wwdc info 228
     Learn from the experts about the Cocoa and Cocoa Touch classes you may not even know exist, as well as some very obscure but extremely valuable classes that are favorites of the presenters.
 ```
 
-- [Alred Web Search](alfred://customsearch/Search%20WWDC%20Sessions/wwdc/utf8/noplus/http://asciiwwdc.com/search?q={query})
+- [Alfred Web Search](https://gist.github.com/mattt/6756058)
 - [DEVONagent Plugin](https://github.com/annard/DEVONagent-Plugins)
 
 ## Webservice APIs
