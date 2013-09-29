@@ -43,6 +43,8 @@ class Web < Sinatra::Base
 
     halt 404 unless @session = Session.first(year: params[:year], number: params[:number])
 
+    link video_url(@session), :rel => :alternate
+
     respond_to do |f|
       f.html {haml :session}
       f.json {@session.to_json}
