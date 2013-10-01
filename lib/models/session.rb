@@ -6,7 +6,7 @@ class Session < Sequel::Model
   plugin :schema
 
   def self.search(query)
-    query = Session.db.literal(query.to_s + ":*")
+    query = Session.db.literal(query.to_s)
 
     Session.db[%{
       SELECT title, description, year, number,
