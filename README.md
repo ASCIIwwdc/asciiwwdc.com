@@ -14,7 +14,10 @@ $ wwdc info 228
     Learn from the experts about the Cocoa and Cocoa Touch classes you may not even know exist, as well as some very obscure but extremely valuable classes that are favorites of the presenters.
 ```
 
-- [Alfred Web Search](https://gist.github.com/mattt/6756058)
+- [Alfred Web Search](https://gist.github.com/mattt/6756058) 
+
+![Alfred Integration](http://asciiwwdc.s3.amazonaws.com/Alfred-WWDC-Web-Search.png)
+
 - [DEVONagent Plugin](https://github.com/annard/DEVONagent-Plugins)
 - [Quix Plugin](https://github.com/rydermackay/quixconfig/blob/master/config.txt)
 
