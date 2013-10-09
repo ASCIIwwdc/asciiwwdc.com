@@ -45,10 +45,8 @@ class Session < Sequel::Model
 
     html = ""
 
-    previous = nil
     self.transcript.split(/\.\s+/).each do |sentence|
-      html << "<p>#{sentence.strip}.</p>" unless sentence == previous
-      previous = sentence
+      html << "<p>#{sentence.strip}.</p>"
     end
 
     self.markup = html
