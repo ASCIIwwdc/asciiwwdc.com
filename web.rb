@@ -13,6 +13,15 @@ class Web < Sinatra::Base
       "/#{session.year}/sessions/#{session.number}"
     end
 
+    def image_url(session)
+      case Integer(session.year)
+      when 2013
+        "/images/wwdc-2013.png"
+      else
+        nil
+      end
+    end
+
     def video_url(session)
       case Integer(session.year)
       when 2013
