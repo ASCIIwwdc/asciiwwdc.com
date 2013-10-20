@@ -7,4 +7,4 @@
       %dt{data: {rank: session.rank}, id: "session-#{session.number}"}
         %a{href: url(session) + "?q=#{@query}"}= session.title
       %dd
-        %blockquote= session.excerpt
+        %blockquote.excerpt= session.excerpt

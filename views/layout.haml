@@ -2,20 +2,19 @@
 %html{lang: "en"}
   %head
     %meta{charset: "utf-8"}
-    %title
-      - if @session
-        = title("ASCIIwwdc", (@session.title rescue nil))
-      - else 
-        ASCIIwwdc - Searchable full-text transcripts of WWDC sessions
+    %title= title("ASCIIwwdc", (@session.title rescue nil))
 
+    - description = "Searchable full-text transcripts of WWDC sessions."
     %meta{name: "author", content: "Mattt Thompson"}
-    %meta{name: "description", content: "Find the content you've been looking for, without having to scrub through session videos."}
+    %meta{name: "description", content: description}
+
     %link{rel: "stylesheet", type: 'text/css', href: "/css/screen.css", media: "screen", charset: "utf-8"}
 
     %meta{property: "og:site_name", content: "ASCIIwwdc"}
     %meta{property: "og:title", content: title("ASCIIwwdc", (@session.title rescue nil))}
     %meta{property: "og:url", content: "http://asciiwwdc.com"}
-    %meta{property: "og:description", content: ""}
+    %meta{property: "og:description", content: (@session.description rescue description)}
+    %meta{property: "og:image", content: (image_url(@session) rescue nil)}
 
     - if @session
       %link{rel: "alternate", type: 'application/json', href: url(@session), charset: "utf-8"}
@@ -47,7 +46,7 @@
 
         #colophon
           :markdown
-            Created by normalizing and indexing video transcript (`.srt`) files provided for WWDC videos. Check out the app's [source code on GitHub](https://github.com/mattt/asciiwwdc.com) for additional implementation details, as well as information about the webservice APIs made available. 
+            Created by normalizing and indexing video transcript files provided for WWDC videos. Check out the app's [source code on GitHub](https://github.com/mattt/asciiwwdc.com) for additional implementation details, as well as information about the webservice APIs made available. 
 
             Built on [Sinatra](http://www.sinatrarb.com). Powered by [Heroku](https://www.heroku.com) and [Heroku Postgres](https://postgres.heroku.com).
 
