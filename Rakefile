@@ -17,15 +17,20 @@ namespace :db do
       year = Integer(directory.split(/\//).last)
 
       YAML.load(File.open(File.join(directory, "_sessions.yml"))).each do |number, attributes|
+      previous = nil
         session = Session.new(attributes)
         session.number = number
         session.year = year
-        session.transcript = File.read("data/#{year}/#{number}.srt").lines.delete_if{|line|
+        session.transcript = File.read("data/#{year}/#{number}.srt").gsub(/\r\n/, " ").lines.delete_if{|line|
           line == "\n" ||
           line[0] == "[" ||
           /^\d{2}\:\d{2}\:\d{2}\.\d{3}/ === line ||
           /^WEBVTT/ === line ||
           /^X-TIMESTAMP-MAP/ === line
+        }.delete_if{|line|
+          old = previous
+          previous = line
+          old == line
         }.collect{|line|
           line.gsub(/[\r\n]+/, " ").gsub(/(&gt\;|\-\-)/, "")
         }.join
