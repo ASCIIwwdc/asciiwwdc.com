@@ -28,9 +28,7 @@ namespace :db do
           /^WEBVTT/ === line ||
           /^X-TIMESTAMP-MAP/ === line
         }.delete_if{|line|
-          old = previous
-          previous = line
-          old == line
+          line == previous and previous = line
         }.collect{|line|
           line.gsub(/[\r\n]+/, " ").gsub(/(&gt\;|\-\-)/, "")
         }.join
