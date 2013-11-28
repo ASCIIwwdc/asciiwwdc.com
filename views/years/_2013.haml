@@ -6,7 +6,7 @@
       %h1 WWDC 2013
       %h2 iOS 7, Mac OS X Mavericks, Xcode 5
 
-  - tracks = @sessions.group_by(&:track)
+  - tracks = @sessions[2013].group_by(&:track)
   - groups = [["Special Events", "Frameworks"], ["Services", "Tools", "Graphics and Games"], ["Media", "Core OS"]]
   - for group in groups
     .group
@@ -16,6 +16,6 @@
           %h1= track
           %dl.sessions
             - for session in sessions
-              %dt{id: "session-#{session.number}"}= session.number 
+              %dt{id: "session-#{session.number}"}= session.number
               %dd.title
                 %a{href: url(session), title: session.title}= session.title

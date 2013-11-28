@@ -37,12 +37,20 @@ class Web < Sinatra::Base
   end
 
   get '/' do
-    @sessions = Session.order(:year, :number).all
+    @sessions = Session.order(:year, :number).all.group_by(&:year)
 
     haml :index
   end
 
+  get '/contribute' do
+    haml :contribute
+  end
+
   get '/2013' do
+    redirect '/'
+  end
+
+  get '/2012' do
     redirect '/'
   end
 

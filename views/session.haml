@@ -6,4 +6,13 @@
     %h2.description= @session.description
 
   %section.transcript
-    = @session.markup
+    - if @session.transcribed?
+      = @session.markup
+    - else
+      %hr
+      .contribute
+        %hgroup
+          %h1 Help Transcribe This Session
+          %h2 Join thousands of fellow ASCIIwwdc users to unlock this content for everyone.
+
+        %a.call-to-action{href: "/contribute"} Click here to find out more.

@@ -28,6 +28,10 @@ class Session < Sequel::Model
     }].collect{|result| OpenStruct.new(result)}
   end
 
+  def transcribed?
+    not (/false/ === self.transcript or self.transcript.empty?)
+  end
+
   def to_s
     "#{self.number} #{self.title}"
   end

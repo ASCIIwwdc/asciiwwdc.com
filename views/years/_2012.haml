@@ -1,0 +1,24 @@
+%section#wwdc-2012.conference
+  %header
+    %img{src: '/images/wwdc-2012.png', width: 130, height: 125}
+
+    %hgroup
+      %h1 WWDC 2012
+      %h2 iOS 6 & Mac OS X Mountain Lion
+
+    %aside
+      %a.call-to-action{href: "/contribute"} Help Out With Transcription
+
+  - tracks = @sessions[2012].group_by(&:track)
+  - groups = [["General", "Essentials"], ["App Services", "Developer Tools", "Graphics, Media & Games"], ["Safari & Web", "Core OS"]]
+  - for group in groups
+    .group
+      - for track in group
+        - sessions = tracks[track]
+        %section.track{id: track.downcase.gsub(/\s+/, "-")}
+          %h1= track
+          %dl.sessions
+            - for session in sessions
+              %dt{id: "session-#{session.number}"}= session.number
+              %dd.title
+                %a{href: url(session), title: session.title}= session.title + ("*" unless session.transcribed?).to_s

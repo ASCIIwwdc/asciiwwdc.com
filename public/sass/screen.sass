@@ -18,7 +18,7 @@ html
   +blueprint-typography
 
   -webkit-background-clip: padding-box
-  
+
   ::selection, ::-moz-selection
     +text-shadow(0 1px 1px #fff)
     background: opacify(#ddd, 0.9)
@@ -111,10 +111,17 @@ html
         width: 100%
         margin-top: 5px
 
+    hr
+      margin-bottom: 3em
+
 [role="container"]
   +container
 
 .conference
+  clear: both
+  width: 100%
+  margin-bottom: 3em
+
   header
     +clearfix
     padding: 3em 0 5em 0
@@ -140,7 +147,7 @@ input[type="search"]
   -webkit-appearance: caret
   padding: 0.25em
 
-input[type="search"]::-webkit-search-cancel-button 
+input[type="search"]::-webkit-search-cancel-button
   display: none
 
 .group
@@ -148,7 +155,7 @@ input[type="search"]::-webkit-search-cancel-button
 
   &:nth-of-type(3n)
     +column(8, true)
-    
+
   .track
     h1
       font-size: 2em
@@ -168,7 +175,7 @@ input[type="search"]::-webkit-search-cancel-button
       dd
         clear: right
         max-width: +span(6)
-      
+
 article
   header
     margin-bottom: 3em
@@ -202,6 +209,47 @@ article
 
     &:after
       content: "…"
+
+.contribute
+  font-size: 150%
+  margin: 0 auto
+  width: 80%
+
+  h1, h2
+    text-align: center
+
+  h1
+    line-height: 1.25
+
+  a
+    text-decoration: underline !important
+
+a.call-to-action
+  +border-radius(10px)
+  +background-image(url("/images/bg.png"), linear-gradient(top, rgb(93, 0, 133), rgb(43, 0, 91)))
+  color: #fff !important
+  width: +span(7)
+
+  display: block
+  font-size: 1.25em
+  text-decoration: none !important
+  +text-shadow(0px 1px 3px darken($primary-color, 20%))
+  text-align: center
+  padding: 1em
+  border: 2px $secondary-color solid
+
+  &:hover
+    text-decoration: none
+    +background-image(url("/images/bg.png"), linear-gradient(bottom, rgb(93, 0, 133), rgb(43, 0, 91)))
+
+.conference a.call-to-action
+  margin-left: +span(16)
+  margin-top: 2em
+  position: absolute
+
+.contribute a.call-to-action
+  margin: 1em auto
+  font-size: 90%
 
 footer
   border-top: 1px #ddd solid
