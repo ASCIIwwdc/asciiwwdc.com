@@ -17,11 +17,15 @@ namespace :db do
       year = Integer(directory.split(/\//).last)
 
       YAML.load(File.open(File.join(directory, "_sessions.yml"))).each do |number, attributes|
-      previous = nil
-        session = Session.new(attributes)
+        previous = nil
+
+        filename = "data/#{year}/#{number}.vtt"
+        next unless File.exist?(filename)
+
+        session = Session.find(year: year, number: number) || Session.new(attributes)
         session.number = number
         session.year = year
-        session.transcript = File.read("data/#{year}/#{number}.srt").gsub(/\r\n/, " ").lines.delete_if{|line|
+        session.transcript = File.read(filename).lines.delete_if{|line|
           line == "\n" ||
           line[0] == "[" ||
           /^\d{2}\:\d{2}\:\d{2}\.\d{3}/ === line ||
