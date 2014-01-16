@@ -19,23 +19,27 @@ namespace :db do
       YAML.load(File.open(File.join(directory, "_sessions.yml"))).each do |number, attributes|
         previous = nil
 
-        filename = "data/#{year}/#{number}.vtt"
-        next unless File.exist?(filename)
-
-        session = Session.find(year: year, number: number) || Session.new(attributes)
+        session = Session.find(year: year, number: number) || Session.new
+        session.title = attributes[:title]
+        session.description = attributes[:description]
+        session.track = attributes[:track]
         session.number = number
         session.year = year
-        session.transcript = File.read(filename).lines.delete_if{|line|
-          line == "\n" ||
-          line[0] == "[" ||
-          /^\d{2}\:\d{2}\:\d{2}\.\d{3}/ === line ||
-          /^WEBVTT/ === line ||
-          /^X-TIMESTAMP-MAP/ === line
-        }.delete_if{|line|
-          line == previous and previous = line
-        }.collect{|line|
-          line.gsub(/[\r\n]+/, " ").gsub(/(&gt\;|\-\-)/, "")
-        }.join
+
+        filename = "data/#{year}/#{number}.vtt"
+        if File.exist?(filename)
+          session.transcript = File.read(filename).lines.delete_if{|line|
+            line == "\n" ||
+            line[0] == "[" ||
+            /^\d{2}\:\d{2}\:\d{2}\.\d{3}/ === line ||
+            /^WEBVTT/ === line ||
+            /^X-TIMESTAMP-MAP/ === line
+          }.delete_if{|line|
+            line == previous and previous = line
+          }.collect{|line|
+            line.gsub(/[\r\n]+/, " ").gsub(/(&gt\;|\-\-)/, "")
+          }.join
+        end
 
         puts session
         session.save
