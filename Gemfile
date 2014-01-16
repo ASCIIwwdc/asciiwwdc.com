@@ -4,8 +4,6 @@ ruby "2.0.0"
 gem 'pg'
 gem 'sequel'
 
-gem 'rake'
-
 gem 'rack-gauges', require: 'rack/gauges'
 
 gem 'sinatra', require: 'sinatra/base'
@@ -18,5 +16,6 @@ gem 'redcarpet'
 gem 'unicorn'
 
 group :development do
+  gem 'rake'
   gem 'compass'
 end
