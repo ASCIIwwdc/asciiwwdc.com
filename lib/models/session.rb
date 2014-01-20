@@ -29,7 +29,7 @@ class Session < Sequel::Model
   end
 
   def transcribed?
-    not (/false/ === self.transcript or self.transcript.empty?)
+    self.transcript and not (/false/ === self.transcript or self.transcript.empty?)
   end
 
   def to_s
@@ -39,7 +39,7 @@ class Session < Sequel::Model
   def validate
     super
 
-    validates_presence [:title, :description, :year, :track, :transcript]
+    validates_presence [:title, :description, :year, :track]
     validates_unique [:title, :year]
     validates_unique [:number, :year]
   end
@@ -49,8 +49,10 @@ class Session < Sequel::Model
 
     html = ""
 
-    self.transcript.split(/\.\s+/).each do |sentence|
-      html << "<p>#{sentence.strip}.</p>"
+    if self.transcript
+      self.transcript.split(/\.\s+/).each do |sentence|
+        html << "<p>#{sentence.strip}.</p>"
+      end
     end
 
     self.markup = html
