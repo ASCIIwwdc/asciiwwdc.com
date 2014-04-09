@@ -4,7 +4,7 @@
     %meta{charset: "utf-8"}
     %title= title("ASCIIwwdc", (@session.title rescue nil))
 
-    - description = "Searchable full-text transcripts of WWDC sessions."
+    - description = (@session.description rescue "Searchable full-text transcripts of WWDC sessions.")
     %meta{name: "author", content: "Mattt Thompson"}
     %meta{name: "description", content: description}
 
