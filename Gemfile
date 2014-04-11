@@ -4,7 +4,7 @@ ruby "2.0.0"
 gem 'pg'
 gem 'sequel'
 
-gem 'rack-gauges', require: 'rack/gauges'
+gem 'rack-google-analytics'
 
 gem 'sinatra', require: 'sinatra/base'
 gem 'sinatra-contrib', require: 'sinatra/contrib/all'

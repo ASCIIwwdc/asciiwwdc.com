@@ -14,7 +14,7 @@ GEM
     multi_json (1.8.4)
     pg (0.17.1)
     rack (1.5.2)
-    rack-gauges (1.1.0)
+    rack-google-analytics (0.10.0)
     rack-protection (1.5.2)
       rack
     rack-test (0.6.2)
@@ -50,7 +50,7 @@ DEPENDENCIES
   compass
   haml
   pg
-  rack-gauges
+  rack-google-analytics
   rake
   redcarpet
   sequel
