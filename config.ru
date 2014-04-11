@@ -13,4 +13,5 @@ use Rack::Gauges, tracker: ENV['GAUGES_TRACKER_ID'] if ENV['GAUGES_TRACKER_ID']
 
 require './web'
 
+use Rack::Deflater
 run Web
