@@ -23,12 +23,7 @@ class Web < Sinatra::Base
     end
 
     def video_url(session)
-      case Integer(session.year)
-      when 2013
-        "https://developer.apple.com/wwdc/videos/?id=#{session.number}"
-      when 2010..2012
-        "https://developer.apple.com/videos/wwdc/2012/?id=#{session.number}"
-      end
+      "https://developer.apple.com/videos/wwdc/#{session.year}/?id=#{session.number}"
     end
   end
 
