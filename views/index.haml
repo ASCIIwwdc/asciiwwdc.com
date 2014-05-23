@@ -5,7 +5,7 @@
       ## Find the content you've been looking for, without having to scrub through session videos
 
   %form#search{method: 'GET', action: '/search'}
-    %input{type: 'search', name: 'q', value: @query, placeholder: "Search for WWDC Sessions..."}
+    %input{type: 'search', name: 'q', value: @query, placeholder: "Search for WWDC Sessions...", tabindex: 1, autocapitalize: "off", autocorrect: "off", autofocus: "autofocus", "x-webkit-speech" => "x-webkit-speech"}
     %label
       :markdown
         Examples: [UIView](/search?q=UIView), [Accelerate](/search?q=Accelerate), [Map Kit](/search?q=Map+Kit), [Bluetooth](/search?q=Bluetooth), [NSHipster](/search?q=NSHipster)
