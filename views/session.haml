@@ -3,7 +3,10 @@
     %h1
       %span.title= @session.title
       %a{href: video_url(@session)} 
-    %h2.description= @session.description
+    %h2
+      %span.session= "Session #{@session.number}"
+      %span.year= "WWDC #{@session.year}"
+    %h3.description= @session.description
 
   %section.transcript
     - if @session.transcribed?
