@@ -113,8 +113,11 @@ html
         width: 100%
         margin-top: 5px
 
-    hr
-      margin-bottom: 3em
+hr
+  margin-bottom: 3em
+  border: none
+  height: 1px
+  background: #555
 
 [role="container"]
   +container
@@ -180,7 +183,7 @@ input[type="search"]::-webkit-search-cancel-button
 
 article
   header
-    margin-bottom: 3em
+    margin-bottom: 4em
 
     h1
       a
@@ -189,8 +192,30 @@ article
         float: right
 
     h2
+      +clearfix
       font-size: 1.5em
+      color: #555
+      display: block
+      clear: both
+
+      *
+        display: block
+
+      border-top: 1px #555 solid
+      border-bottom: 1px #555 solid
+      padding: 0.25em 0
+      margin: 1em 0
+
+      .session
+        float: left
+
+      .year
+        float: right
+
+    h3
+      font-size: 1.25em
       color: #777
+      line-height: 1.5em
   p
     font-size: 1.25em
 
