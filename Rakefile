@@ -15,6 +15,7 @@ namespace :db do
     Dir["data/*"].each do |directory|
       next unless File.directory? directory
       year = Integer(directory.split(/\//).last)
+      next unless year == 2010
 
       YAML.load(File.open(File.join(directory, "_sessions.yml"))).each do |number, attributes|
         previous = nil
@@ -31,13 +32,14 @@ namespace :db do
           session.transcript = File.read(filename).lines.delete_if{|line|
             line == "\n" ||
             line[0] == "[" ||
-            /^\d{2}\:\d{2}\:\d{2}\.\d{3}/ === line ||
             /^WEBVTT/ === line ||
-            /^X-TIMESTAMP-MAP/ === line
+            /^X-TIMESTAMP-MAP/ === line ||
+            /^\d+/ === line ||
+            / --> / === line
           }.delete_if{|line|
             line == previous and previous = line
           }.collect{|line|
-            line.gsub(/[\r\n]+/, " ").gsub(/(&gt\;|\-\-)/, "")
+            line.gsub(/[\r\n]+/, " ").gsub(/(&gt\;|\-\-)/, "").gsub(/^>>/, "")
           }.join
         end
 
