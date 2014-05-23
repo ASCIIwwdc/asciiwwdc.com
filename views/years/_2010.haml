@@ -1,0 +1,24 @@
+%section#wwdc-2010.conference
+  %header
+    %img{src: '/images/wwdc-2010.png', width: 125, height: 125}
+
+    %hgroup
+      %h1 WWDC 2010
+      %h2 iPhone 4
+
+  - tracks = @sessions[2010].group_by(&:track)
+
+  - groups = [["General", "Frameworks"], ["Core OS", "Developer Tools"], ["Graphics & Media", "Internet & Web"]]
+  - for group in groups
+    .group
+      - for track in group
+        - sessions = tracks[track]
+        %section.track{id: track.downcase.gsub(/\s+/, "-")}
+          %h1= track
+          %dl.sessions
+            - for session in sessions
+              %dt{id: "session-#{session.number}"}= session.number
+              %dd.title
+                %a{href: url(session), title: session.title}= session.title + ("*" unless session.transcribed?).to_s
+
+
