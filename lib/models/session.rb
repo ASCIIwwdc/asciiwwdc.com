@@ -29,7 +29,7 @@ class Session < Sequel::Model
   end
 
   def transcribed?
-    self.transcript and not (/false/ === self.transcript or self.transcript.empty?)
+    self.transcript and not ("false" === self.transcript or self.transcript.empty?)
   end
 
   def to_s
