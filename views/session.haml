@@ -12,10 +12,14 @@
     - if @session.transcribed?
       = @session.markup
     - else
-      %hr
-      .contribute
-        %hgroup
-          %h1 Help Transcribe This Session
-          %h2 Join thousands of fellow ASCIIwwdc users to unlock this content for everyone.
+      - if @session.year == 2014
+        %h1 Transcript Coming Soon
+        :markdown
+          Apple is expected to release transcriptions for WWDC 2014 sessions in the near future. [Follow @asciiWWDC](https://twitter.com/asciiwwdc) for the latest updates.
+      - elsif @session.year == 2012
+        .contribute
+          %hgroup
+            %h1 Help Transcribe This Session
+            %h2 Join thousands of fellow ASCIIwwdc users to unlock this content for everyone.
 
-        %a.call-to-action{href: "/contribute"} Click here to find out more.
+          %a.call-to-action{href: "/contribute"} Click here to find out more.

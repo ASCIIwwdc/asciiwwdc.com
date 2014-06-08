@@ -1,12 +1,12 @@
-%section#wwdc-2013.conference
+%section#wwdc-2014.conference
   %header
-    %img{src: '/images/wwdc-2013.png', width: 130, height: 125}
+    %img{src: '/images/wwdc-2014.png', width: 130, height: 56}
 
     %hgroup
-      %h1 WWDC 2013
-      %h2 iOS 7, OS X Mavericks, Xcode 5
+      %h1 WWDC 2014
+      %h2 iOS 8, OS X Yosemite, Xcode 6, Swift
 
-  - tracks = @sessions[2013].group_by(&:track)
+  - tracks = @sessions[2014].group_by(&:track)
   - groups = [["Special Events", "Frameworks"], ["Services", "Tools", "Graphics and Games"], ["Media", "Core OS"]]
   - for group in groups
     .group
@@ -18,4 +18,4 @@
             - for session in sessions
               %dt{id: "session-#{session.number}"}= session.number
               %dd.title
-                %a{href: url(session), title: session.title}= session.title
+                %a{href: url(session), title: session.title}= session.title + ("*" unless session.transcribed?).to_s

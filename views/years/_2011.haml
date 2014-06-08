@@ -1,16 +1,13 @@
-%section#wwdc-2012.conference
+%section#wwdc-2011.conference
   %header
-    %img{src: '/images/wwdc-2012.png', width: 130, height: 125}
+    %img{src: '/images/wwdc-2011.jpg', width: 130, height: 125}
 
     %hgroup
-      %h1 WWDC 2012
-      %h2 iOS 6 & OS X Mountain Lion
+      %h1 WWDC 2011
+      %h2 iOS 5, OS X Lion, & iCloud
 
-    %aside
-      %a.call-to-action{href: "/contribute"} Help Out With Transcription
-
-  - tracks = @sessions[2012].group_by(&:track)
-  - groups = [["General", "Essentials"], ["App Services", "Developer Tools", "Graphics, Media & Games"], ["Safari & Web", "Core OS"]]
+  - tracks = @sessions[2011].group_by(&:track)
+  - groups = [["General", "App Frameworks"], ["Core OS", "Developer Tools"],  ["Graphics, Media, & Games", "Internet & Web"]]
   - for group in groups
     .group
       - for track in group
