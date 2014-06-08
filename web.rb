@@ -15,8 +15,10 @@ class Web < Sinatra::Base
 
     def image_url(session)
       case Integer(session.year)
-      when 2012..2013
+      when 2010, 2012..2014
         "/images/wwdc-#{session.year}.png"
+      when 2011
+        "/images/wwdc-#{session.year}.jpg"
       else
         nil
       end
