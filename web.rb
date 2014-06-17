@@ -45,14 +45,6 @@ class Web < Sinatra::Base
     haml :contribute
   end
 
-  get '/2013' do
-    redirect '/'
-  end
-
-  get '/2012' do
-    redirect '/'
-  end
-
   get '/:year/sessions/:number', provides: [:html, :json, :vtt, :txt] do
     param :year, Integer, required: true
     param :number, Integer, required: true
@@ -82,6 +74,17 @@ class Web < Sinatra::Base
           results: @sessions.collect(&:to_h)
         }.to_json
       end
+    end
+  end
+
+  get '/:year' do
+    param :year, Integer
+
+    case params[:year]
+    when 2010..2014
+      redirect "/#wwdc-#{params[:year]}"
+    else
+      pass
     end
   end
 end
