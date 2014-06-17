@@ -5,8 +5,9 @@ class Session < Sequel::Model
   plugin :validation_helpers
   plugin :schema
 
-  def self.search(query)
+  def self.search(query, year = nil)
     query = Session.db.literal(query.to_s)
+    year = Session.db.literal(year.to_i) if year
 
     Session.db[%{
       SELECT title, description, year, number,
@@ -24,6 +25,7 @@ class Session < Sequel::Model
              ) AS excerpt
              FROM sessions
              WHERE tsv @@ plainto_tsquery('english', #{query})
+               #{%{AND year = #{year}} if year}
              ORDER BY rank DESC
     }].collect{|result| OpenStruct.new(result)}
   end

@@ -63,8 +63,9 @@ class Web < Sinatra::Base
 
   get '/search', provides: [:html, :json] do
     param :q, String, blank: false
+    param :year, Integer, in: 2010..2014
 
-    @sessions = Session.search(@query)
+    @sessions = Session.search(@query, params[:year])
 
     respond_to do |f|
       f.html {haml :search}
