@@ -2,7 +2,7 @@
   %header
     %h1
       %span.title{itemprop: "name"}= @session.title
-      %a{href: video_url(@session), itemprop: "video"} 
+      %a{href: video_url(@session), itemprop: "video", title: "Link to Video and Slides"} 
     %h2
       %span.session{itemprop: "alternateName"}= "Session #{@session.number}"
       %span.year{itemprop: "copyrightYear"}= "WWDC #{@session.year}"
