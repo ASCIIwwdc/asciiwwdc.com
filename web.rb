@@ -78,6 +78,14 @@ class Web < Sinatra::Base
     end
   end
 
+  get '/sitemap.xml' do
+    @sessions = Session.order(:year, :number).all
+
+    respond_to do |f|
+      f.xml { builder :sitemap }
+    end
+  end
+
   get '/:year' do
     param :year, Integer
 

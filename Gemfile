@@ -12,6 +12,7 @@ gem 'sinatra-param', require: 'sinatra/param'
 
 gem 'haml'
 gem 'redcarpet'
+gem 'builder'
 
 gem 'unicorn'
 

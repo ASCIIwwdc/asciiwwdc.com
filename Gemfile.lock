@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     backports (3.4.0)
+    builder (3.2.2)
     chunky_png (1.2.9)
     compass (0.12.2)
       chunky_png (~> 1.2)
@@ -47,6 +48,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  builder
   compass
   haml
   pg
