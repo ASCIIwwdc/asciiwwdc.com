@@ -1,5 +1,5 @@
 !!! 5
-%html{lang: "en"}
+%html{lang: "en-US"}
   %head
     %meta{charset: "utf-8"}
     %title= title("ASCIIwwdc", (@session.title rescue nil))
@@ -8,6 +8,9 @@
     %meta{name: "author", content: "Mattt Thompson"}
     %meta{name: "description", content: description}
     %meta{name: "viewport", content: "width=device-width; initial-scale=1.0;"}
+
+    %link{rel: "alternate", hreflang: "en-us", href: "http://asciiwwdc.com"}
+    %link{rel: "alternate", hreflang: "x-default", href: "http://asciiwwdc.com"}
 
     %link{rel: "stylesheet", type: 'text/css', href: "/css/screen.css", media: "screen", charset: "utf-8"}
 
