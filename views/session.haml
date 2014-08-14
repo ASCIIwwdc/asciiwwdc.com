@@ -1,14 +1,14 @@
-%article.session{id: "session-#{@session.number}"}
+%article.session{id: "session-#{@session.number}", itemscope: true, itemtype: "http://schema.org/Article"}
   %header
     %h1
-      %span.title= @session.title
-      %a{href: video_url(@session)} 
+      %span.title{itemprop: "name"}= @session.title
+      %a{href: video_url(@session), itemprop: "video"} 
     %h2
-      %span.session= "Session #{@session.number}"
-      %span.year= "WWDC #{@session.year}"
-    %h3.description= @session.description
+      %span.session{itemprop: "alternateName"}= "Session #{@session.number}"
+      %span.year{itemprop: "copyrightYear"}= "WWDC #{@session.year}"
+    %h3.description{itemprop: "description"}= @session.description
 
-  %section.transcript
+  %section.transcript{itemprop: "text"}
     - if @session.transcribed?
       = @session.markup
     - else
@@ -25,3 +25,13 @@
             %h2 Join thousands of fellow ASCIIwwdc users to unlock this content for everyone.
 
           %a.call-to-action{href: "/contribute"} Click here to find out more.
+
+  %div{itemprop: "author copyrightHolder provider publisher sourceOrganization", itemscope: true, itemtype: "http://schema.org/Corporation", style: "display:none;"}
+    %span{itemprop: "name"} Apple, Inc.
+    %span{itemprop: "tickerSymbol"} AAPL
+    %address{itemprop: "address", itemscope: true, itemtype: "http://schema.org/PostalAddress"}
+      %span{itemprop: "streetAddress"}1 Infinite Loop
+      %span{itemprop: "addressLocality"} Cupertino
+      %span{itemprop: "addressRegion"} CA
+      %span{itemprop: "postalCode"} 95014
+      %span{itemprop: "addressCountry"} US
