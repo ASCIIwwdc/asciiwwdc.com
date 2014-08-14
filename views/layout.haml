@@ -2,7 +2,12 @@
 %html{lang: "en-US"}
   %head
     %meta{charset: "utf-8"}
-    %title= title("ASCIIwwdc", (@session.title rescue nil))
+    - if @session
+      %title= title("WWDC #{@session.year} Session #{@session.number}", @session.title, "ASCIIwwdc")
+    - elsif @query
+      %title= title("Search Results for \"#{@query}\"", "ASCIIwwdc")
+    - else
+      %title= title("ASCIIwwdc", "Searchable full-text transcripts of WWDC sessions")
 
     - description = (@session.description rescue "Searchable full-text transcripts of WWDC sessions.")
     %meta{name: "author", content: "Mattt Thompson"}
