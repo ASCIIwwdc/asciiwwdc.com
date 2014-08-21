@@ -14,9 +14,6 @@
     %meta{name: "description", content: description}
     %meta{name: "viewport", content: "width=device-width; initial-scale=1.0;"}
 
-    %link{rel: "alternate", hreflang: "en-us", href: "http://asciiwwdc.com"}
-    %link{rel: "alternate", hreflang: "x-default", href: "http://asciiwwdc.com"}
-
     %link{rel: "stylesheet", type: 'text/css', href: "/css/screen.css", media: "screen", charset: "utf-8"}
 
     %meta{property: "og:site_name", content: "ASCIIwwdc"}
@@ -26,8 +23,15 @@
     %meta{property: "og:image", content: (image_url(@session) rescue nil)}
 
     - if @session
+      %link{rel: "canonical", href: url(@session)}
+      %link{rel: "alternate", hreflang: "en-us", href: url(@session)}
+      %link{rel: "alternate", hreflang: "x-default", href: url(@session)}
       %link{rel: "alternate", type: 'application/json', href: url(@session), charset: "utf-8"}
       %link{rel: "alternate", type: 'text/vtt', href: url(@session), charset: "utf-8"}
+    - else
+      %link{rel: "canonical", href: "http://asciiwwdc.com"}
+      %link{rel: "alternate", hreflang: "en-us", href: "http://asciiwwdc.com"}
+      %link{rel: "alternate", hreflang: "x-default", href: "http://asciiwwdc.com"}
 
   %body
     %header{role: 'banner'}
