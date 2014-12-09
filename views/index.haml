@@ -15,3 +15,17 @@
 = haml :'years/_2012'
 = haml :'years/_2011'
 = haml :'years/_2010'
+
+:plain
+  <script type="application/ld+json">
+  {
+     "@context": "http://schema.org",
+     "@type": "WebSite",
+     "url": "http://asciiwwdc.com/",
+     "potentialAction": {
+       "@type": "SearchAction",
+       "target": "http://asciiwwdc.com/search?q={query}",
+       "query-input": "required name=query"
+     }
+  }
+  </script>
