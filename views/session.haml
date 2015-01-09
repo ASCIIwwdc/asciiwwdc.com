@@ -12,19 +12,7 @@
     - if @session.transcribed?
       = @session.markup
     - else
-      - if @session.year == 2014
-        %h1 Transcript Coming Soon
-        :markdown
-          Apple is expected to release transcriptions for WWDC 2014 sessions in the near future.
-
-          [Follow @asciiWWDC](https://twitter.com/asciiwwdc) to be notified of future updates.
-      - elsif @session.year == 2012
-        .contribute
-          %hgroup
-            %h1 Help Transcribe This Session
-            %h2 Join thousands of fellow ASCIIwwdc users to unlock this content for everyone.
-
-          %a.call-to-action{href: "/contribute"} Click here to find out more.
+      %h1 No Transcript Available
 
   %div{itemprop: "author copyrightHolder provider publisher sourceOrganization", itemscope: true, itemtype: "http://schema.org/Corporation", style: "display:none;"}
     %span{itemprop: "name"} Apple, Inc.
