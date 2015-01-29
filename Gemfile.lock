@@ -8,6 +8,9 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
+    dotenv (0.11.1)
+      dotenv-deployment (~> 0.0.2)
+    dotenv-deployment (0.0.2)
     fssm (0.2.10)
     haml (4.0.5)
       tilt
@@ -50,6 +53,7 @@ PLATFORMS
 DEPENDENCIES
   builder
   compass
+  dotenv
   haml
   pg
   rack-google-analytics

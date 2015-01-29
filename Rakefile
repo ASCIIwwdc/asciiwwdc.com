@@ -1,6 +1,9 @@
 require 'bundler'
 Bundler.require
 
+require 'dotenv'
+Dotenv.load
+
 require 'yaml'
 
 Sequel.extension :migration

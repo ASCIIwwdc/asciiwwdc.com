@@ -13,10 +13,10 @@ gem 'sinatra-param', require: 'sinatra/param'
 gem 'haml'
 gem 'redcarpet'
 gem 'builder'
-
 gem 'unicorn'
 
 group :development do
+  gem 'dotenv'
   gem 'rake'
   gem 'compass'
 end
