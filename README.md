@@ -46,11 +46,11 @@ curl -i -X GET -H "Accept: application/json" "http://asciiwwdc.com/search?q=UIVi
 ## Setup
 
 ```bash
-$ git clone https://github.com/mattt/asciiwwdc.com.git --recursive`
+$ git clone https://github.com/mattt/asciiwwdc.com.git --recursive
 $ cd asciiwwdc.com
 $ bundle
 $ createdb asciiwwdc && echo "DATABASE_URL=postgres://localhost/asciiwwdc" > .env
-$ bundle exec rake db:seed
+$ foreman run bundle exec rake db:seed
 $ foreman start
 ```
 
