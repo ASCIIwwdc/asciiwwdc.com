@@ -40,7 +40,7 @@ namespace :db do
                 next
               when / --> /
                 h, m, s, d = line.match(/(\d{2})\:(\d{2}):(\d{2})[\.\,]?(\d{3})?/).captures
-                timecode = (h.to_i * 3600) + (m.to_i * 60) + (s.to_i) + ((d || 0.0).to_f) if h and m and s
+                timecode = (h.to_i * 3600) + (m.to_i * 60) + (s.to_i) + ((d || 0.0).to_f / 1000) if h and m and s
               else
                 lines << line.gsub(/[\r\n]+/, " ").gsub(/(&gt\;|\-\-)/, "").gsub(/^>>/, "").strip
               end
