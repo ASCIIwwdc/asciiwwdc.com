@@ -3,6 +3,7 @@ ruby "2.0.0"
 
 gem 'pg'
 gem 'sequel'
+gem 'activesupport'
 
 gem 'rack-google-analytics', require: 'rack/google-analytics'
 

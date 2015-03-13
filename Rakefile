@@ -3,9 +3,9 @@ Bundler.require
 
 require 'yaml'
 
-Sequel.extension :migration
-
+Sequel.extension :core_extensions, :migration
 DB = Sequel.connect(ENV['DATABASE_URL'])
+DB.extension :pg_array
 Sequel::Migrator.run(DB, ::File.join(::File.dirname(__FILE__), 'lib/migrations'))
 
 require './lib/models/session'
@@ -17,8 +17,6 @@ namespace :db do
       year = Integer(directory.split(/\//).last)
 
       YAML.load(File.open(File.join(directory, "_sessions.yml"))).each do |number, attributes|
-        previous = nil
-
         session = Session.find(year: year, number: number) || Session.new
         session.title = attributes[:title]
         session.description = attributes[:description]
@@ -28,18 +26,37 @@ namespace :db do
 
         filename = "data/#{year}/#{number}.vtt"
         if File.exist?(filename)
-          session.transcript = File.read(filename).lines.delete_if{|line|
-            line == "\n" ||
-            line[0] == "[" ||
-            /^WEBVTT/ === line ||
-            /^X-TIMESTAMP-MAP/ === line ||
-            /^\d+/ === line ||
-            / --> / === line
-          }.delete_if{|line|
-            line == previous and previous = line
-          }.collect{|line|
-            line.gsub(/[\r\n]+/, " ").gsub(/(&gt\;|\-\-)/, "").gsub(/^>>/, "")
-          }.join
+          annotations, timecodes, previous = [], [], nil
+
+          File.read(filename).gsub(/\r\n?/, "\n").split(/\n\n/).each do |chunk|
+            lines = []
+            timecode = nil
+
+            chunk.split(/\n/).each do |line|
+              case line
+              when /^WEBVTT/, /^X-TIMESTAMP-MAP/
+                next
+              when /^\d+$/
+                next
+              when / --> /
+                h, m, s, d = line.match(/(\d{2})\:(\d{2}):(\d{2})[\.\,]?(\d{3})?/).captures
+                timecode = (h.to_i * 3600) + (m.to_i * 60) + (s.to_i) + ((d || 0.0).to_f) if h and m and s
+              else
+                lines << line.gsub(/[\r\n]+/, " ").gsub(/(&gt\;|\-\-)/, "").gsub(/^>>/, "").strip
+              end
+            end
+
+            annotation = lines.join(" ")
+            next if annotation.nil? or annotation.empty?
+            next if annotation == previous
+            previous = annotation
+
+            annotations << annotation
+            timecodes << timecode
+          end
+          
+          session.annotations = annotations
+          session.timecodes = timecodes
         end
 
         puts session

@@ -1,7 +1,9 @@
 require 'bundler'
 Bundler.require
 
+Sequel.extension :core_extensions, :migration
 DB = Sequel.connect(ENV['DATABASE_URL'])
+DB.extension :pg_array
 
 Rack::Mime::MIME_TYPES.merge!({
   ".srt" => "text/plain",
