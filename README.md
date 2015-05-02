@@ -65,6 +65,13 @@ $ heroku create
 $ git push heroku master
 ```
 
+## Contact
+
+ASCIIwwdc was created by Mattt Thompson and is maintained by Nate Cook.
+
+- https://github.com/ASCIIwwdc
+- https://twitter.com/ASCIIwwdc
+
 ## License
 
 WWDC is available under the MIT license. See the LICENSE file for more info.
