@@ -1,0 +1,31 @@
+%section#wwdc-2015.conference{itemscope: true, itemtype: "http://schema.org/Event"}
+  %header
+    %img{src: '/images/wwdc-2015.png', width: 130, height: 125}
+
+    %hgroup
+      %h1{itemprop: "name"} WWDC 2015
+      %h2 iOS 9, OS X El Capitan, watchOS 2, Swift 2
+
+    %time{itemprop: "startDate", content: "2015-06-08T10:00"}
+    %address{itemprop: "location", itemscope: true, itemtype: "http://schema.org/PostalAddress", hidden: true, style: "display:none;"}
+      %span{itemprop: "name"} Moscone West
+      %span{itemprop: "streetAddress"}747 Howard St.
+      %span{itemprop: "addressLocality"} San Francisco
+      %span{itemprop: "addressRegion"} CA
+      %span{itemprop: "postalCode"} 94103
+      %span{itemprop: "addressCountry"} US
+
+  - tracks = @sessions[2015].group_by(&:track)
+
+  - groups = [["Featured", "App Frameworks"], ["Distribution", "Developer Tools", "Media"], ["Graphics and Games", "System Frameworks", "Design"]]
+  - for group in groups
+    .group
+      - for track in group
+        - sessions = tracks[track]
+        %section.track{id: track.downcase.gsub(/\s+/, "-")}
+          %h1= track
+          %dl.sessions
+            - for session in sessions
+              %dt{id: "session-#{session.number}"}= session.number
+              %dd.title{itemprop: "subEvent", itemscope: true, itemtype: "http://schema.org/Event"}
+                %a{href: url(session), title: session.title, itemprop: "name"}= session.title + ("*" unless session.transcribed?).to_s

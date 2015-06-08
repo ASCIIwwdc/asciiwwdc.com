@@ -12,7 +12,10 @@
     - if @session.transcribed?
       = @session.markup
     - else
-      %h1 No Transcript Available
+      - if @session.year == 2015
+        %h1 Awaiting Transcript
+      - else
+        %h1 No Transcript Available
 
   %div{itemprop: "author copyrightHolder provider publisher sourceOrganization", itemscope: true, itemtype: "http://schema.org/Corporation", style: "display:none;"}
     %span{itemprop: "name"} Apple, Inc.

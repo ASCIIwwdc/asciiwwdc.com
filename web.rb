@@ -15,7 +15,7 @@ class Web < Sinatra::Base
 
     def image_url(session)
       case Integer(session.year)
-      when 2010, 2012..2014
+      when 2010, 2012..2015
         "/images/wwdc-#{session.year}.png"
       when 2011
         "/images/wwdc-#{session.year}.jpg"
@@ -63,7 +63,7 @@ class Web < Sinatra::Base
 
   get '/search', provides: [:html, :json] do
     param :q, String, blank: false
-    param :year, Integer, in: 2010..2014
+    param :year, Integer, in: 2010..2015
 
     @sessions = Session.search(@query, params[:year])
 
@@ -90,7 +90,7 @@ class Web < Sinatra::Base
     param :year, Integer
 
     case params[:year]
-    when 2010..2014
+    when 2010..2015
       redirect "/#wwdc-#{params[:year]}"
     else
       pass
