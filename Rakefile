@@ -15,6 +15,7 @@ namespace :db do
     Dir["data/*"].each do |directory|
       next unless File.directory? directory
       year = Integer(directory.split(/\//).last)
+      puts "\n#{year}\n----"
 
       YAML.load(File.open(File.join(directory, "_sessions.yml"))).each do |number, attributes|
         session = Session.find(year: year, number: number) || Session.new
