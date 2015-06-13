@@ -18,7 +18,6 @@ gem 'builder'
 gem 'unicorn'
 
 gem 'compass'
-gem 'blueprint'
 gem 'compass-blueprint'
 
 group :development do
