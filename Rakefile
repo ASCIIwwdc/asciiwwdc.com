@@ -11,10 +11,14 @@ Sequel::Migrator.run(DB, ::File.join(::File.dirname(__FILE__), 'lib/migrations')
 require './lib/models/session'
 
 namespace :db do
-  task :seed do
+  task :seed, [:year] do |task, args|
+    yearMatch = args.year || "none"
+    
     Dir["data/*"].each do |directory|
       next unless File.directory? directory
+      
       year = Integer(directory.split(/\//).last)
+      next unless yearMatch == "#{year}" || yearMatch == "none"
       puts "\n#{year}\n----"
 
       YAML.load(File.open(File.join(directory, "_sessions.yml"))).each do |number, attributes|
