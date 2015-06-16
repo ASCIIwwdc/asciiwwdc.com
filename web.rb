@@ -4,6 +4,10 @@ class Web < Sinatra::Base
   register Sinatra::Contrib
   helpers Sinatra::Param
 
+  set :raise_sinatra_param_exceptions, true
+  set :show_exceptions, false
+  set :raise_errors, true
+
   helpers do
     def title(*args)
       [*args].compact.join(" - ")
@@ -34,11 +38,38 @@ class Web < Sinatra::Base
 
     cache_control :public, max_age: 36000 unless @query
   end
+  
+  error Sinatra::Param::InvalidParameterError do
+    haml :error, :locals => { :msg => env['sinatra.error'] }
+  end
+
+  error 404 do
+    haml :error, :locals => { :msg => "404 Not found"}
+  end
+
+  not_found do
+    haml :error, :locals => { :msg => "404 Not found"}
+  end
 
   get '/' do
-    @sessions = Session.order(:year, :number).all.group_by(&:year)
+    path = "/tmp/asciiwwdc-index.tmp"
+    # exists and is less than six hours old
+    validCache = File.exists?(path) && ((Time.now - File.stat(path).mtime).to_i < (60 * 60 * 6))
+    # force refresh
+    refreshCache = params.has_key?("refreshCache")
+    
+    if validCache && !refreshCache
+      File.read(path)
+    else
+      @sessions = Session.order(:year, :number).all.group_by(&:year)
+      output = haml :index
+      
+      File.open(path, "w") do |file|
+        file.write(output)
+      end
 
-    haml :index
+      output
+    end
   end
 
   get '/contribute' do
@@ -96,4 +127,5 @@ class Web < Sinatra::Base
       pass
     end
   end
+  
 end
