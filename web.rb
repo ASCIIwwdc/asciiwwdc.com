@@ -52,19 +52,15 @@ class Web < Sinatra::Base
   end
 
   get '/' do
-    path = "/tmp/asciiwwdc-index.tmp"
-    # exists and is less than six hours old
-    validCache = File.exists?(path) && ((Time.now - File.stat(path).mtime).to_i < (60 * 60 * 6))
-    # force refresh
-    refreshCache = params.has_key?("refreshCache")
+    cachepath = "/tmp/asciiwwdc-index.tmp"
     
-    if validCache && !refreshCache
-      File.read(path)
+    if File.exists?(cachepath) && !params.has_key?("refreshCache")
+      File.read(cachepath)
     else
       @sessions = Session.order(:year, :number).all.group_by(&:year)
       output = haml :index
       
-      File.open(path, "w") do |file|
+      File.open(cachepath, "w") do |file|
         file.write(output)
       end
 
