@@ -69,7 +69,7 @@ class Session < Sequel::Model
         when /^\[.+\]$/
           paragraphs << [%{<p class="annotation">}, current_paragraph, %{</p>}].join("")
           current_paragraph = ""
-        when /[\.\?\!]$/
+        when /[\.\?\!]"?$/
           paragraphs << [%{<p>}, current_paragraph, %{</p>}].join("")
           current_paragraph = ""
         end
