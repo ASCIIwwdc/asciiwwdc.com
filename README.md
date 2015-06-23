@@ -50,7 +50,7 @@ $ git clone https://github.com/mattt/asciiwwdc.com.git --recursive
 $ cd asciiwwdc.com
 $ bundle
 $ createdb asciiwwdc && echo "DATABASE_URL=postgres://localhost/asciiwwdc" > .env
-$ foreman run bundle exec rake db:seed
+$ foreman run bundle exec rake db:seed     # can take a year parameter, eg [2015]
 $ foreman start
 ```
 
