@@ -83,7 +83,7 @@ class Web < Sinatra::Base
     respond_to do |f|
       f.html {haml :session}
       f.json {@session.to_json}
-      f.vtt  {send_file "data/#{params[:year]}/#{params[:number]}.srt", type: :vtt}
+      f.vtt  {send_file "data/#{params[:year]}/#{params[:number]}.vtt", type: :vtt}
       f.txt  {@session.transcript}
     end
   end
