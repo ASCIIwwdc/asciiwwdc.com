@@ -16,9 +16,11 @@ namespace :db do
     
     Dir["data/*"].each do |directory|
       next unless File.directory? directory
-      next if directory == 'tools'
       
-      year = Integer(directory.split(/\//).last)
+      filename = directory.split(/\//).last
+      next if filename == 'tools'
+      
+      year = Integer(filename)
       next unless yearMatch == "#{year}" || yearMatch == "none"
       puts "\n#{year}\n----"
 
