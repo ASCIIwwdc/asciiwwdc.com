@@ -34,7 +34,7 @@ class Web < Sinatra::Base
   end
 
   before do
-    @query = params[:q] if params[:q]
+    @query = params[:q]
 
     cache_control :public, max_age: 36000 unless @query
   end
