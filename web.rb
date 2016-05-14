@@ -34,7 +34,7 @@ class Web < Sinatra::Base
   end
 
   before do
-    @query = Rack::Utils.escape_html(params[:q]) if params[:q]
+    @query = params[:q] if params[:q]
 
     cache_control :public, max_age: 36000 unless @query
   end

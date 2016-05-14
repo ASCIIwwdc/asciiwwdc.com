@@ -1,6 +1,6 @@
 %article#search-results
   %header
-    %h1= "#{@sessions.count} #{@sessions.count == 1 ? "Result" : "Results"} for '#{@query}'"
+    %h1= "#{@sessions.count} #{@sessions.count == 1 ? "Result" : "Results"} for '#{html_escape @query}'"
 
   %dl
     - for session in @sessions
