@@ -16,6 +16,7 @@ namespace :db do
     
     Dir["data/*"].each do |directory|
       next unless File.directory? directory
+      next if directory == 'tools'
       
       year = Integer(directory.split(/\//).last)
       next unless yearMatch == "#{year}" || yearMatch == "none"
