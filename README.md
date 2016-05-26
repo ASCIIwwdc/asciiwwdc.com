@@ -5,7 +5,7 @@ Find the content you've been looking for, without having to scrub through sessio
 
 ## Workflow Integration
 
-- [`wwdc` Command-Line Interface](https://github.com/mattt/wwdc)
+- [`wwdc` Command-Line Interface](https://github.com/ASCIIwwdc/wwdc)
 
 ```bash
 $ wwdc info 228
