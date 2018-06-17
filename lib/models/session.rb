@@ -43,8 +43,7 @@ class Session < Sequel::Model
     super
 
     validates_presence [:title, :description, :year, :track]
-    validates_unique [:title, :year]
-    validates_unique [:number, :year]
+    validates_unique [:year, :number]
   end
 
   def before_save
