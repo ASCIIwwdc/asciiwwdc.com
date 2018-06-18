@@ -10,9 +10,8 @@ Rack::Mime::MIME_TYPES.merge!({
   ".vtt" => "text/vtt",
 })
 
-if ENV['RACK_ENV'] == 'production'
-  use Rack::SSL
-end
+
+use Rack::SslEnforcer if ENV['RACK_ENV'] == 'production'
 
 use Rack::HeadersFilter
 use Rack::Deflater

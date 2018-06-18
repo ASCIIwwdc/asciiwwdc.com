@@ -7,6 +7,7 @@ gem 'activesupport'
 
 gem 'rack-google-analytics', require: 'rack/google-analytics'
 gem 'rack-headers_filter', require: 'rack/headers_filter'
+gem 'rack-ssl-enforcer', require: 'rack/ssl-enforcer'
 
 gem 'sinatra', require: 'sinatra/base'
 gem 'sinatra-contrib', require: 'sinatra/contrib/all'
@@ -18,7 +19,7 @@ gem 'haml'
 gem 'redcarpet'
 gem 'builder'
 
-gem 'unicorn'
+gem 'puma'
 
 gem 'compass'
 gem 'compass-blueprint'

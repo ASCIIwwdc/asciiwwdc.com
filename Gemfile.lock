@@ -58,7 +58,6 @@ GEM
     http_parser.rb (0.6.0)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
-    kgio (2.11.2)
     loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -70,6 +69,7 @@ GEM
       mini_portile2 (~> 2.3.0)
     pg (1.0.0)
     public_suffix (3.0.2)
+    puma (3.11.4)
     rack (2.0.5)
     rack-google-analytics (1.2.0)
       actionpack
@@ -77,6 +77,7 @@ GEM
     rack-headers_filter (0.0.1)
     rack-protection (2.0.3)
       rack
+    rack-ssl-enforcer (0.2.9)
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
     rails-dom-testing (2.0.3)
@@ -84,7 +85,6 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
-    raindrops (0.19.0)
     rake (12.3.1)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
@@ -112,9 +112,6 @@ GEM
     tilt (2.0.8)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    unicorn (5.4.0)
-      kgio (~> 2.6)
-      raindrops (~> 0.7)
 
 PLATFORMS
   ruby
@@ -127,15 +124,16 @@ DEPENDENCIES
   em-http-request
   haml
   pg
+  puma
   rack-google-analytics
   rack-headers_filter
+  rack-ssl-enforcer
   rake
   redcarpet
   sequel (~> 4.49)
   sinatra
   sinatra-contrib
   sinatra-param
-  unicorn
 
 RUBY VERSION
    ruby 2.4.1p111
