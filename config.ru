@@ -10,8 +10,12 @@ Rack::Mime::MIME_TYPES.merge!({
   ".vtt" => "text/vtt",
 })
 
-use Rack::Deflater
+if ENV['RACK_ENV'] == 'production'
+  use Rack::SSL
+end
 
+use Rack::HeadersFilter
+use Rack::Deflater
 use Rack::Static, urls: ["/css", "/images", "/js", "favicon.ico"], root: "public"
 
 require './web'
