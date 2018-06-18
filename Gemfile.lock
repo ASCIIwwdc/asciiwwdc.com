@@ -74,6 +74,7 @@ GEM
     rack-google-analytics (1.2.0)
       actionpack
       activesupport
+    rack-headers_filter (0.0.1)
     rack-protection (2.0.3)
       rack
     rack-test (1.0.0)
@@ -127,6 +128,7 @@ DEPENDENCIES
   haml
   pg
   rack-google-analytics
+  rack-headers_filter
   rake
   redcarpet
   sequel (~> 4.49)
