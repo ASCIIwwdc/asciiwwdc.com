@@ -21,6 +21,14 @@ html
 
   -webkit-background-clip: padding-box
 
+  text-rendering: optimizeLegibility
+  -webkit-font-feature-settings: "kern" 1, "kern"
+  font-feature-settings: "kern" 1, "kern"
+  -webkit-font-kerning: normal
+  font-kerning: normal
+  -webkit-font-smoothing: antialiased
+  letter-spacing: .02em
+
   ::selection, ::-moz-selection
     +text-shadow(0 1px 1px #fff)
     background: opacify(#ddd, 0.9)
