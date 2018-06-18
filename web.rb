@@ -19,10 +19,10 @@ class Web < Sinatra::Base
 
     def image_url(session)
       case Integer(session.year)
-      when 2010, 2012..2018
-        "/images/wwdc-#{session.year}.png"
-      when 2011
+      when 2010, 2011
         "/images/wwdc-#{session.year}.jpg"
+      when 2012..2018
+        "/images/wwdc-#{session.year}.png"
       else
         nil
       end
@@ -38,7 +38,7 @@ class Web < Sinatra::Base
 
     cache_control :public, max_age: 36000 unless @query
   end
-  
+
   error Sinatra::Param::InvalidParameterError do
     haml :error, :locals => { :msg => env['sinatra.error'] }
   end
@@ -53,13 +53,13 @@ class Web < Sinatra::Base
 
   get '/' do
     cachepath = "/tmp/asciiwwdc-index.tmp"
-    
+
     if File.exists?(cachepath) && !params.has_key?("refreshCache")
       File.read(cachepath)
     else
       @sessions = Session.order(:year, :number).all.group_by(&:year)
       output = haml :index
-      
+
       File.open(cachepath, "w") do |file|
         file.write(output)
       end
@@ -123,5 +123,5 @@ class Web < Sinatra::Base
       pass
     end
   end
-  
+
 end
