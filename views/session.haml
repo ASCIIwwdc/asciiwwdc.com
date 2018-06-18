@@ -12,7 +12,7 @@
     - if @session.transcribed?
       = @session.markup
     - else
-      - if @session.year == 2016
+      - if @session.year >= 2016
         %h1 Awaiting Transcript
       - else
         %h1 No Transcript Available
