@@ -44,10 +44,10 @@ class Web < Sinatra::Base
                 style-src 'self' *.asciiwwdc.com 'unsafe-inline';
                 object-src 'none';
                 base-uri 'none';
-            ),
+            ).gsub("\n", ' ').squeeze(' ').strip,
             "Link" => %(
                 </css/screen.css>; rel=preload; as=style
-            ),
+            ).gsub("\n", ' ').squeeze(' ').strip,
             "Referrer-Policy" => "same-origin",
             "Strict-Transport-Security" => "max-age=63072000; includeSubDomains; preload",
             "X-Content-Type-Options" => "nosniff",
