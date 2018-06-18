@@ -39,14 +39,12 @@ class Web < Sinatra::Base
     cache_control :public, max_age: 36000 unless @query
 
     headers "Content-Security-Policy" => %(
-                default-src 'self' *.asciiwwdc.com;
+                default-src 'self' *.asciiwwdc.com https://www.google-analytics.com 'unsafe-inline';
                 form-action 'self';
                 frame-ancestors 'none';
                 script-src 'self' https://www.google-analytics.com 'sha256-PMVY4aOO1U8gjRTynZgESPfFlcAw8wzp2Ap8YXicf4s=';
                 style-src 'self' *.asciiwwdc.com;
                 object-src 'none';
-                img-src https://www.google-analytics.com www.google-analytics.com https://stats.g.doubleclick.net;
-                connect-src https://www.google-analytics.com www.google-analytics.com https://stats.g.doubleclick.net;
                 base-uri 'none';
             ).gsub("\n", ' ').squeeze(' ').strip,
             "Link" => %(
