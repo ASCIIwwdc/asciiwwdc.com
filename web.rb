@@ -39,9 +39,11 @@ class Web < Sinatra::Base
     cache_control :public, max_age: 36000 unless @query
 
     headers "Content-Security-Policy" => %(
-                default-src 'self' *.asciiwwdc.com https://www.google-analytics.com 'unsafe-inline';
+                default-src 'self' *.asciiwwdc.com;
+                form-action 'self';
+                frame-ancestors 'none';
                 script-src 'self' https://www.google-analytics.com 'sha256-PMVY4aOO1U8gjRTynZgESPfFlcAw8wzp2Ap8YXicf4s=';
-                style-src 'self' *.asciiwwdc.com 'unsafe-inline';
+                style-src 'self' *.asciiwwdc.com;
                 object-src 'none';
                 base-uri 'none';
             ).gsub("\n", ' ').squeeze(' ').strip,
@@ -49,6 +51,7 @@ class Web < Sinatra::Base
                 </css/screen.css>; rel=preload; as=style
             ).gsub("\n", ' ').squeeze(' ').strip,
             "Referrer-Policy" => "same-origin",
+            "Server" => '',
             "Strict-Transport-Security" => "max-age=63072000; includeSubDomains; preload",
             "X-Content-Type-Options" => "nosniff",
             "X-Frame-Options" => "DENY",
