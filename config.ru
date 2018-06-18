@@ -10,9 +10,10 @@ Rack::Mime::MIME_TYPES.merge!({
   ".vtt" => "text/vtt",
 })
 
+use Rack::Deflater
+
 use Rack::Static, urls: ["/css", "/images", "/js", "favicon.ico"], root: "public"
 
 require './web'
 
-use Rack::Deflater
 run Web
