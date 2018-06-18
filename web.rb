@@ -37,6 +37,22 @@ class Web < Sinatra::Base
     @query = params[:q]
 
     cache_control :public, max_age: 36000 unless @query
+
+    headers "Content-Security-Policy" => %(
+                default-src 'self' *.asciiwwdc.com;
+                script-src 'self' https://www.google-analytics.com;
+                style-src 'self' *.asciiwwdc.com 'unsafe-inline';
+                object-src 'none';
+                base-uri 'none';
+            ),
+            "Link" => %(
+                </css/screen.css>; rel=preload; as=style
+            )
+            "Referrer-Policy" => "same-origin",
+            "Strict-Transport-Security" => "max-age=63072000; includeSubDomains; preload",
+            "X-Content-Type-Options" => "nosniff",
+            "X-Frame-Options" => "DENY",
+            "X-XSS-Protection" => "1; mode=block" unless settings.development?
   end
 
   error Sinatra::Param::InvalidParameterError do
