@@ -39,7 +39,7 @@ class Web < Sinatra::Base
     cache_control :public, max_age: 36000 unless @query
 
     headers "Content-Security-Policy" => %(
-                default-src 'self' *.asciiwwdc.com;
+                default-src 'self' *.asciiwwdc.com 'unsafe-inline';
                 script-src 'self' https://www.google-analytics.com;
                 style-src 'self' *.asciiwwdc.com 'unsafe-inline';
                 object-src 'none';
