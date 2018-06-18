@@ -1,6 +1,6 @@
 %section#wwdc-2016.conference{itemscope: true, itemtype: "http://schema.org/Event"}
   %header
-    %img{src: '/images/wwdc-2017.png', width: 125, height: 100}
+    %img{src: '/images/wwdc-2017.png', width: 125, height: 100, alt: "WWDC 2017"}
 
     %hgroup
       %h1{itemprop: "name"} WWDC 2017
@@ -25,6 +25,6 @@
           %h1= track
           %dl.sessions
             - for session in sessions
-              %dt{id: "session-#{session.number}"}= session.number
+              %dt{id: "wwdc-2017-session-#{session.number}"}= session.number
               %dd.title{itemprop: "subEvent", itemscope: true, itemtype: "http://schema.org/Event"}
                 %a{href: url(session), title: session.title, itemprop: "name"}= session.title + ("*" unless session.transcribed?).to_s
