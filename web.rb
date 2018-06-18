@@ -36,7 +36,7 @@ class Web < Sinatra::Base
   before do
     @query = params[:q]
 
-    cache_control :public, max_age: 36000 unless @query
+    cache_control :public, max_age: 3600
 
     headers "Content-Security-Policy" => %(
                 default-src 'self' *.asciiwwdc.com https://www.google-analytics.com 'unsafe-inline';
@@ -69,20 +69,11 @@ class Web < Sinatra::Base
   end
 
   get '/' do
-    cachepath = "/tmp/asciiwwdc-index.tmp"
-
-    if File.exists?(cachepath) && !params.has_key?("refreshCache")
-      File.read(cachepath)
-    else
-      @sessions = Session.order(:year, :number).all.group_by(&:year)
-      output = haml :index
-
-      File.open(cachepath, "w") do |file|
-        file.write(output)
-      end
-
-      output
-    end
+    @sessions = Session.select(:title, :year, :number, :track)
+                        .order(:year, :number)
+                        .all
+                        .group_by(&:year)
+    haml :index
   end
 
   get '/contribute' do
