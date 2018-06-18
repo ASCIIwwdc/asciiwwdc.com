@@ -47,7 +47,7 @@ class Web < Sinatra::Base
             ),
             "Link" => %(
                 </css/screen.css>; rel=preload; as=style
-            )
+            ),
             "Referrer-Policy" => "same-origin",
             "Strict-Transport-Security" => "max-age=63072000; includeSubDomains; preload",
             "X-Content-Type-Options" => "nosniff",
