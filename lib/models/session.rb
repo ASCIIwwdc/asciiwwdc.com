@@ -14,9 +14,9 @@ class Session < Sequel::Model
       SELECT title, description, year, number,
              ts_rank_cd(
               (
-                setweight(to_tsvector(title), 'A') ||
-                setweight(to_tsvector(description), 'C') ||
-                setweight(tsv, 'D')
+                setweight(to_tsvector(title), 'D') ||
+                setweight(to_tsvector(description), 'B') ||
+                setweight(tsv, 'A')
               ),
               plainto_tsquery('english', #{query})
              ) AS rank,
