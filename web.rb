@@ -40,7 +40,7 @@ class Web < Sinatra::Base
 
     headers "Content-Security-Policy" => %(
                 default-src 'self' *.asciiwwdc.com 'unsafe-inline';
-                script-src 'self' https://www.google-analytics.com sha256-PMVY4aOO1U8gjRTynZgESPfFlcAw8wzp2Ap8YXicf4s=;
+                script-src 'self' https://www.google-analytics.com 'sha256-PMVY4aOO1U8gjRTynZgESPfFlcAw8wzp2Ap8YXicf4s=';
                 style-src 'self' *.asciiwwdc.com 'unsafe-inline';
                 object-src 'none';
                 base-uri 'none';
