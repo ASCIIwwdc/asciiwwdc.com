@@ -10,7 +10,7 @@
       %title= title("ASCIIwwdc", "Searchable full-text transcripts of WWDC sessions")
 
     - description = (@session.description rescue "Searchable full-text transcripts of WWDC sessions.")
-    %meta{name: "author", content: "Mattt Thompson"}
+    %meta{name: "author", content: "Mattt"}
     %meta{name: "description", content: description}
     %meta{name: "viewport", content: "width=device-width, initial-scale=1"}
 
@@ -18,7 +18,7 @@
 
     %meta{property: "og:site_name", content: "ASCIIwwdc"}
     %meta{property: "og:title", content: title("ASCIIwwdc", (@session.title rescue nil))}
-    %meta{property: "og:url", content: "http://asciiwwdc.com"}
+    %meta{property: "og:url", content: "https://asciiwwdc.com"}
     %meta{property: "og:description", content: (@session.description rescue description)}
     %meta{property: "og:image", content: (image_url(@session) rescue nil)}
 
@@ -31,9 +31,9 @@
     - elsif @query
       %meta{name: "robots", content: "noindex"}
     - else
-      %link{rel: "canonical", href: "http://asciiwwdc.com"}
-      %link{rel: "alternate", hreflang: "en-us", href: "http://asciiwwdc.com"}
-      %link{rel: "alternate", hreflang: "x-default", href: "http://asciiwwdc.com"}
+      %link{rel: "canonical", href: "https://asciiwwdc.com"}
+      %link{rel: "alternate", hreflang: "en-us", href: "https://asciiwwdc.com"}
+      %link{rel: "alternate", hreflang: "x-default", href: "https://asciiwwdc.com"}
 
   %body
     %header{role: 'banner'}

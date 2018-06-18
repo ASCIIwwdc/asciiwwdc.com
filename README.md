@@ -16,7 +16,7 @@ $ wwdc info 228
 
 - [Alfred Web Search](https://gist.github.com/mattt/6756058)
 
-![Alfred Integration](http://asciiwwdc.s3.amazonaws.com/Alfred-WWDC-Web-Search.png)
+![Alfred Integration](https://asciiwwdc.s3.amazonaws.com/Alfred-WWDC-Web-Search.png)
 
 - [DEVONagent Plugin](https://github.com/annard/DEVONagent-Plugins)
 - [Quix Plugin](https://github.com/rydermackay/quixconfig/blob/master/config.txt)
@@ -26,13 +26,13 @@ $ wwdc info 228
 ### Session Information
 
 ```bash
-curl -i -X GET -H "Accept: application/json" "http://asciiwwdc.com/2013/sessions/228"
+curl -i -X GET -H "Accept: application/json" "https://asciiwwdc.com/2013/sessions/228"
 ```
 
 ### Search
 
 ```bash
-curl -i -X GET -H "Accept: application/json" "http://asciiwwdc.com/search?q=UIView"
+curl -i -X GET -H "Accept: application/json" "https://asciiwwdc.com/search?q=UIView"
 ```
 
 ---
