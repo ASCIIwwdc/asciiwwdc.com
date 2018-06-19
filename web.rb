@@ -125,7 +125,7 @@ class Web < Sinatra::Base
     param :year, Integer
 
     case params[:year]
-    when 2010..2016
+    when 2010..2018
       redirect "/#wwdc-#{params[:year]}"
     else
       pass
