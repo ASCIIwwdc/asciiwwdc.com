@@ -27,4 +27,4 @@
             - for session in sessions
               %dt{id: "wwdc-2017-session-#{session.number}"}= session.number
               %dd.title{itemprop: "subEvent", itemscope: true, itemtype: "http://schema.org/Event"}
-                %a{href: url(session), title: session.title, itemprop: "name"}= session.title + ("*" unless session.transcribed?).to_s
+                %a{href: url(session), title: session.title, itemprop: "name"}= session.title 
