@@ -136,7 +136,7 @@ DEPENDENCIES
   sinatra-param
 
 RUBY VERSION
-   ruby 2.4.1p111
+   ruby 2.4.3p205
 
 BUNDLED WITH
-   1.16.0
+   1.16.2
