@@ -36,7 +36,6 @@ html
 
   body
     background: #fff
-    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)
     h1, h2, input
       font-family: "Avenir", "Helvetica", sans-serif
 
@@ -58,7 +57,6 @@ html
       +box-shadow(darken($primary-color, 10%) 0px -1px 10px inset)
 
       margin-bottom: 3em
-      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)
 
       hgroup
         margin: 5em auto 0 auto
@@ -131,6 +129,7 @@ hr
 
 [role="container"]
   +container
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)
 
 .conference
   clear: both
