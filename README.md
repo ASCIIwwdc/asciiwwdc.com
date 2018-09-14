@@ -15,9 +15,6 @@ $ wwdc info 228
 ```
 
 - [Alfred Web Search](https://gist.github.com/mattt/6756058)
-
-![Alfred Integration](https://asciiwwdc.s3.amazonaws.com/Alfred-WWDC-Web-Search.png)
-
 - [DEVONagent Plugin](https://github.com/annard/DEVONagent-Plugins)
 - [Quix Plugin](https://github.com/rydermackay/quixconfig/blob/master/config.txt)
 
@@ -67,7 +64,7 @@ $ git push heroku master
 
 ## Contact
 
-ASCIIwwdc was created by Mattt Thompson and is maintained by Nate Cook.
+Mattt ([@mattt](https://twitter.com/mattt))
 
 - https://github.com/ASCIIwwdc
 - https://twitter.com/ASCIIwwdc
@@ -76,4 +73,4 @@ ASCIIwwdc was created by Mattt Thompson and is maintained by Nate Cook.
 
 WWDC is available under the MIT license. See the LICENSE file for more info.
 
-All content copyright © 2014 Apple Inc. All rights reserved.
+All content copyright © 2010 – 2018 Apple Inc. All rights reserved.
