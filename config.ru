@@ -18,9 +18,9 @@ use Rack::Deflater
 use Rack::Static, urls: ['/css', '/images', '/js', 'favicon.ico'],
                   root: 'public'
 
-if ENV['REDIS']
-  use Rack::Cache, metastore: "#{ENV['REDIS']}/0/metastore",
-                   entitystore: "#{ENV['REDIS']}/0/entitystore"
+if ENV['REDIS_URL']
+  use Rack::Cache, metastore: "#{ENV['REDIS_URL']}/0/metastore",
+                   entitystore: "#{ENV['REDIS_URL']}/0/entitystore"
 end
 
 require './web'
