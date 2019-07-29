@@ -1,0 +1,30 @@
+%section#wwdc-2019.conference{itemscope: true, itemtype: "http://schema.org/Event"}
+  %header
+    %img{src: '/images/wwdc-2019.png', width: 125, height: 100, alt: "WWDC 2019"}
+
+    %hgroup
+      %h1{itemprop: "name"} WWDC 2019
+      %h2 iOS 13, macOS Catalina, SwiftUI, Catalyst
+
+    %time{itemprop: "startDate", content: "2016-06-013T10:00"}
+    %address{itemprop: "location", itemscope: true, itemtype: "http://schema.org/PostalAddress", hidden: true}
+      %span{itemprop: "name"} San Jose McEnery Convention Center
+      %span{itemprop: "streetAddress"} 150 W San Carlos St.
+      %span{itemprop: "addressLocality"} San Jose
+      %span{itemprop: "addressRegion"} CA
+      %span{itemprop: "postalCode"} 95113
+      %span{itemprop: "addressCountry"} US
+
+  - tracks = @sessions[2019].group_by(&:track)
+  - groups = [["Featured", "App Frameworks"], ["App Store and Distribution", "Media", "Graphics and Games"], ["System Frameworks", "Design", "Hardware"]]
+  - for group in groups
+    .group
+      - for track in group
+        - sessions = tracks[track] || []
+        %section.track{id: track.downcase.gsub(/\s+/, "-")}
+          %h1= track
+          %dl.sessions
+            - for session in sessions
+              %dt{id: "wwdc-2019-session-#{session.number}"}= session.number
+              %dd.title{itemprop: "subEvent", itemscope: true, itemtype: "http://schema.org/Event"}
+                %a{href: url(session), title: session.title, itemprop: "name"}= session.title
