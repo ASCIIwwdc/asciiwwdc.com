@@ -36,7 +36,7 @@
       %link{rel: "alternate", type: 'application/json', href: url(@session), charset: "utf-8"}
       %link{rel: "alternate", type: 'text/vtt', href: url(@session), charset: "utf-8"}
     - elsif @query
-      %meta{name: "robots", content: "noindex"}
+      %meta{name: "robots", content: "noindex,nofollow"}
     - else
       %link{rel: "canonical", href: "https://asciiwwdc.com"}
       %link{rel: "alternate", hreflang: "en-us", href: "https://asciiwwdc.com"}
