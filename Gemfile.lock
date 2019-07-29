@@ -1,19 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    actionpack (5.2.3)
-      actionview (= 5.2.3)
-      activesupport (= 5.2.3)
-      rack (~> 2.0)
-      rack-test (>= 0.6.3)
-      rails-dom-testing (~> 2.0)
-      rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    actionview (5.2.3)
-      activesupport (= 5.2.3)
-      builder (~> 3.1)
-      erubi (~> 1.4)
-      rails-dom-testing (~> 2.0)
-      rails-html-sanitizer (~> 1.0, >= 1.0.3)
     activesupport (5.2.3)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
@@ -40,7 +27,6 @@ GEM
       sass (>= 3.2, < 3.5)
     concurrent-ruby (1.1.5)
     cookiejar (0.3.3)
-    crass (1.0.4)
     em-http-request (1.1.5)
       addressable (>= 2.3.4)
       cookiejar (!= 0.3.1)
@@ -49,7 +35,6 @@ GEM
       http_parser.rb (>= 0.6.0)
     em-socksify (0.3.2)
       eventmachine (>= 1.0.0.beta.4)
-    erubi (1.8.0)
     eventmachine (1.2.7)
     ffi (1.11.1)
     haml (5.1.1)
@@ -58,35 +43,19 @@ GEM
     http_parser.rb (0.6.0)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
-    loofah (2.2.3)
-      crass (~> 1.0.2)
-      nokogiri (>= 1.5.9)
-    mini_portile2 (2.4.0)
     minitest (5.11.3)
     multi_json (1.13.1)
     mustermann (1.0.3)
     nio4r (2.4.0)
-    nokogiri (1.10.3)
-      mini_portile2 (~> 2.4.0)
     pg (1.1.4)
     public_suffix (3.1.1)
     puma (4.0.1)
       nio4r (~> 2.0)
     rack (2.0.7)
-    rack-google-analytics (1.2.0)
-      actionpack
-      activesupport
     rack-headers_filter (0.0.1)
     rack-protection (2.0.5)
       rack
     rack-ssl-enforcer (0.2.9)
-    rack-test (1.1.0)
-      rack (>= 1.0, < 3)
-    rails-dom-testing (2.0.3)
-      activesupport (>= 4.2.0)
-      nokogiri (>= 1.6)
-    rails-html-sanitizer (1.0.4)
-      loofah (~> 2.2, >= 2.2.2)
     rake (12.3.3)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
@@ -126,7 +95,6 @@ DEPENDENCIES
   haml
   pg
   puma
-  rack-google-analytics
   rack-headers_filter
   rack-ssl-enforcer
   rake
