@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './lib/models/session'
 
 class Web < Sinatra::Base
@@ -10,7 +12,7 @@ class Web < Sinatra::Base
 
   helpers do
     def title(*args)
-      [*args].compact.join(" - ")
+      [*args].compact.join(' - ')
     end
 
     def url(session)
@@ -21,10 +23,8 @@ class Web < Sinatra::Base
       case Integer(session.year)
       when 2010, 2011
         "/images/wwdc-#{session.year}.jpg"
-      when 2012..2018
+      when 2012..2019
         "/images/wwdc-#{session.year}.png"
-      else
-        nil
       end
     end
 
@@ -36,43 +36,45 @@ class Web < Sinatra::Base
   before do
     @query = params[:q]
 
-    cache_control :public, max_age: 3600
+    cache_control :public, max_age: 86_400
 
-    headers "Content-Security-Policy" => %(
-                default-src 'self' *.asciiwwdc.com;
-                form-action 'self';
-                frame-ancestors 'none';
-                object-src 'none';
-                base-uri 'none';
-            ).gsub("\n", ' ').squeeze(' ').strip,
-            "Link" => %(
-                </css/screen.css>; rel=preload; as=style
-            ).gsub("\n", ' ').squeeze(' ').strip,
-            "Referrer-Policy" => "same-origin",
-            "Server" => '',
-            "Strict-Transport-Security" => "max-age=63072000; includeSubDomains; preload",
-            "X-Content-Type-Options" => "nosniff",
-            "X-Frame-Options" => "DENY",
-            "X-XSS-Protection" => "1; mode=block" unless settings.development?
+    unless settings.development?
+      headers 'Content-Security-Policy' => %(
+                  default-src 'self' *.asciiwwdc.com;
+                  form-action 'self';
+                  frame-ancestors 'none';
+                  object-src 'none';
+                  base-uri 'none';
+              ).gsub("\n", ' ').squeeze(' ').strip,
+              'Link' => %(
+                  </css/screen.css>; rel=preload; as=style
+              ).gsub("\n", ' ').squeeze(' ').strip,
+              'Referrer-Policy' => 'same-origin',
+              'Server' => '',
+              'Strict-Transport-Security' => 'max-age=63072000; includeSubDomains; preload',
+              'X-Content-Type-Options' => 'nosniff',
+              'X-Frame-Options' => 'DENY',
+              'X-XSS-Protection' => '1; mode=block'
+    end
   end
 
   error Sinatra::Param::InvalidParameterError do
-    haml :error, :locals => { :msg => env['sinatra.error'] }
+    haml :error, locals: { msg: env['sinatra.error'] }
   end
 
   error 404 do
-    haml :error, :locals => { :msg => "404 Not found"}
+    haml :error, locals: { msg: '404 Not found' }
   end
 
   not_found do
-    haml :error, :locals => { :msg => "404 Not found"}
+    haml :error, locals: { msg: '404 Not found' }
   end
 
   get '/' do
     @sessions = Session.select(:title, :year, :number, :track)
-                        .order(:year, :number)
-                        .all
-                        .group_by(&:year)
+                       .order(:year, :number)
+                       .all
+                       .group_by(&:year)
     haml :index
   end
 
@@ -80,30 +82,30 @@ class Web < Sinatra::Base
     haml :contribute
   end
 
-  get '/:year/sessions/:number', provides: [:html, :json, :vtt, :txt] do
+  get '/:year/sessions/:number', provides: %i[html json vtt txt] do
     param :year, Integer, required: true
     param :number, Integer, required: true
 
     halt 404 unless @session = Session.first(year: params[:year], number: params[:number])
 
-    link video_url(@session), :rel => :alternate
+    link video_url(@session), rel: :alternate
 
     respond_to do |f|
-      f.html {haml :session}
-      f.json {@session.to_json}
-      f.vtt  {send_file "data/#{params[:year]}/#{params[:number]}.vtt", type: :vtt}
-      f.txt  {@session.transcript}
+      f.html { haml :session }
+      f.json { @session.to_json }
+      f.vtt  { send_file "data/#{params[:year]}/#{params[:number]}.vtt", type: :vtt }
+      f.txt  { @session.transcript }
     end
   end
 
-  get '/search', provides: [:html, :json] do
+  get '/search', provides: %i[html json] do
     param :q, String, blank: false
     param :year, Integer, in: 2010..2018
 
     @sessions = Session.search(@query, params[:year])
 
     respond_to do |f|
-      f.html {haml :search}
+      f.html { haml :search }
       f.json do
         {
           query: @query,
@@ -131,5 +133,4 @@ class Web < Sinatra::Base
       pass
     end
   end
-
 end

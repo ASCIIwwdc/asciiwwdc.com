@@ -7,8 +7,11 @@ gem 'activesupport'
 gem 'pg'
 gem 'sequel', '~> 4.49'
 
+gem 'rack-cache', require: 'rack/cache'
 gem 'rack-headers_filter', require: 'rack/headers_filter'
 gem 'rack-ssl-enforcer', require: 'rack/ssl-enforcer'
+
+gem 'redis-rack-cache'
 
 gem 'sinatra', require: 'sinatra/base'
 gem 'sinatra-contrib', require: 'sinatra/contrib/all'
