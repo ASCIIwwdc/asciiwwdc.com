@@ -8,7 +8,7 @@ Find the content you've been looking for, without having to scrub through sessio
 - [`wwdc` Command-Line Interface](https://github.com/ASCIIwwdc/wwdc)
 
 ```bash
-$ wwdc info 228
+$ wwdc info 228 --year 2013
 
     228: "Hidden Gems in Cocoa and Cocoa Touch"
     Learn from the experts about the Cocoa and Cocoa Touch classes you may not even know exist, as well as some very obscure but extremely valuable classes that are favorites of the presenters.
@@ -73,4 +73,4 @@ Mattt ([@mattt](https://twitter.com/mattt))
 
 WWDC is available under the MIT license. See the LICENSE file for more info.
 
-All content copyright © 2010 – 2018 Apple Inc. All rights reserved.
+All content copyright © 2010 – 2019 Apple Inc. All rights reserved.
