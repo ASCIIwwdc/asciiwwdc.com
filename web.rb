@@ -127,16 +127,24 @@ class Web < Sinatra::Base
     respond_to do |f|
       f.html { haml :search }
       f.json do
+        headers['Content-Type'] = 'application/json'
+
         {
           query: @query,
           results: @sessions.collect(&:to_h)
         }.to_json
       end
-      f.rss { builder :'search.rss' }
+      f.rss {
+          headers['Content-Type'] = 'application/rss+xml'
+
+          builder :'search.rss'
+      }
     end
   end
 
   get '/sitemap.xml' do
+    headers['Content-Type'] = 'application/xml'
+
     @sessions ||= Session.select(:title, :year, :number, :track)
                          .order(:year, :number)
                          .all
@@ -145,6 +153,8 @@ class Web < Sinatra::Base
   end
 
   get '/open-search.xml' do
+    headers['Content-Type'] = 'application/opensearchdescription+xml'
+
     builder :'open-search.xml'
   end
 
