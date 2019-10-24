@@ -12,7 +12,7 @@ xml.OpenSearchDescription 'xmlns' => 'http://a9.com/-/spec/opensearch/1.1/',
   xml.Url 'type' => 'application/opensearchdescription+xml',
           'rel' => 'self',
           'template' => 'https://asciiwwdc.com/open-search.xml'
-  xml.URL 'type' => 'text/html',
+  xml.Url 'type' => 'text/html',
           'rel' => 'results',
           'method' => 'get',
           'template' => 'https://asciiwwdc.com/search?q={searchTerms}'
