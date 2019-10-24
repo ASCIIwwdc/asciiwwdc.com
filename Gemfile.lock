@@ -61,6 +61,9 @@ GEM
     loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
+    mime-types (3.2.2)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2018.0812)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.13.1)
@@ -123,6 +126,7 @@ DEPENDENCIES
   compass-blueprint
   em-http-request
   haml
+  mime-types
   pg
   puma
   rack-google-analytics
@@ -139,4 +143,4 @@ RUBY VERSION
    ruby 2.4.3p205
 
 BUNDLED WITH
-   1.16.2
+   1.17.3

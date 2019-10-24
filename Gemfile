@@ -24,6 +24,8 @@ gem 'puma'
 gem 'compass'
 gem 'compass-blueprint'
 
+gem 'mime-types', require: 'mime/types/full'
+
 group :development do
   gem 'rake'
 end
