@@ -77,15 +77,11 @@ class Web < Sinatra::Base
   end
 
   error Sinatra::Param::InvalidParameterError do
-    haml :error, locals: { msg: env['sinatra.error'] }
+    haml :error, locals: { message: env['sinatra.error'], code: 400 }
   end
 
   error 404 do
-    haml :error, locals: { msg: '404 Not found' }
-  end
-
-  not_found do
-    haml :error, locals: { msg: '404 Not found' }
+    haml :error, locals: { message: 'Not found', code: 404 }
   end
 
   get '/' do
