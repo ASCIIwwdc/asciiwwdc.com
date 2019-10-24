@@ -55,8 +55,11 @@ class Web < Sinatra::Base
       request.path_info = request.path_info.chomp(extension)
       break
     end
+  end
 
-    unless settings.development?
+
+  after do
+    if settings.production? && response.content_type.nil?
       headers 'Content-Security-Policy' => %(
                   default-src 'self' *.asciiwwdc.com;
                   form-action 'self';
