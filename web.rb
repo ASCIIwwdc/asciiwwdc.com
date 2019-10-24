@@ -154,7 +154,7 @@ class Web < Sinatra::Base
     builder :'open-search.xml'
   end
 
-  get '/:year' do
+  get %r{/(?<year>\d{4})/} do
     param :year, Integer
 
     case params[:year]
