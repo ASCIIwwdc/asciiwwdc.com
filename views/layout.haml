@@ -23,11 +23,18 @@
     %meta{content: "#603cba", name: "msapplication-TileColor"}
     %meta{content: "#ffffff", name: "theme-color"}
 
+    %link{rel: "search", type: 'application/opensearchdescription+xml', href: "/open-search.xml", title: "ASCIIwwdc Search"}
+
     %meta{property: "og:site_name", content: "ASCIIwwdc"}
-    %meta{property: "og:title", content: title("ASCIIwwdc", (@session.title rescue nil))}
-    %meta{property: "og:url", content: "https://asciiwwdc.com"}
-    %meta{property: "og:description", content: (@session.description rescue description)}
-    %meta{property: "og:image", content: (image_url(@session) rescue nil)}
+    - if @session
+      %meta{property: "og:url", content: url(@session) }
+      %meta{property: "og:title", content: title("ASCIIwwdc", @session.title)}
+      %meta{property: "og:description", content: description}
+      %meta{property: "og:image", content: (image_url(@session))}
+    - else
+      %meta{property: "og:url", content: "https://asciiwwdc.com"}
+      %meta{property: "og:title", content: title("ASCIIwwdc", "Searchable full-text transcripts of WWDC sessions")}
+      %meta{property: "og:description", content: description}
 
     - if @session
       %link{rel: "canonical", href: url(@session)}

@@ -7,8 +7,17 @@ class Web < Sinatra::Base
   helpers Sinatra::Param
 
   set :raise_sinatra_param_exceptions, true
-  set :show_exceptions, false
+  set :show_exceptions, !settings.production?
   set :raise_errors, true
+  set :supported_mime_types, lambda {
+    [
+      'text/html',
+      'application/json',
+      'text/vtt',
+      'text/plain',
+      'application/rss+xml'
+    ].flat_map { |content_type| MIME::Types[content_type] }
+  }.call
 
   helpers do
     def title(*args)
@@ -16,16 +25,16 @@ class Web < Sinatra::Base
     end
 
     def url(session)
-      "/#{session.year}/sessions/#{session.number}"
+      request.base_url + "/#{session.year}/sessions/#{session.number}"
     end
 
     def image_url(session)
-      case Integer(session.year)
-      when 2010, 2011
-        "/images/wwdc-#{session.year}.jpg"
-      when 2012..2019
-        "/images/wwdc-#{session.year}.png"
-      end
+      request.base_url + case Integer(session.year)
+                         when 2010, 2011
+                           "/images/wwdc-#{session.year}.jpg"
+                         else
+                           "/images/wwdc-#{session.year}.png"
+                         end
     end
 
     def video_url(session)
@@ -37,6 +46,15 @@ class Web < Sinatra::Base
     @query = params[:q]
 
     cache_control :public, max_age: 86_400
+
+    settings.supported_mime_types.each do |mimetype|
+      extension = '.' + mimetype.preferred_extension
+      next unless request.path.end_with?(extension)
+
+      request.accept.unshift(mimetype)
+      request.path_info = request.path_info.chomp(extension)
+      break
+    end
 
     unless settings.development?
       headers 'Content-Security-Policy' => %(
@@ -82,11 +100,13 @@ class Web < Sinatra::Base
     haml :contribute
   end
 
-  get '/:year/sessions/:number', provides: %i[html json vtt txt] do
+  get '/:year/sessions/:number.?:format?', provides: %i[html json vtt txt] do
     param :year, Integer, required: true
     param :number, Integer, required: true
 
-    halt 404 unless @session = Session.first(year: params[:year], number: params[:number])
+    unless @session = Session.first(year: params[:year], number: params[:number])
+      halt 404
+    end
 
     link video_url(@session), rel: :alternate
 
@@ -98,9 +118,9 @@ class Web < Sinatra::Base
     end
   end
 
-  get '/search', provides: %i[html json] do
+  get '/search.?:format?', provides: %i[html json rss] do
     param :q, String, blank: false
-    param :year, Integer, in: 2010..2018
+    param :year, Integer, in: 2010..2019
 
     @sessions = Session.search(@query, params[:year])
 
@@ -112,22 +132,29 @@ class Web < Sinatra::Base
           results: @sessions.collect(&:to_h)
         }.to_json
       end
+      f.rss { builder :'search.rss' }
     end
   end
 
   get '/sitemap.xml' do
-    @sessions = Session.order(:year, :number).all
+    @sessions ||= Session.select(:title, :year, :number, :track)
+                         .order(:year, :number)
+                         .all
 
-    respond_to do |f|
-      f.xml { builder :sitemap }
-    end
+    builder :'sitemap.xml'
+  end
+
+  get '/open-search.xml' do
+    content_type 'application/opensearchdescription+xml'
+
+    builder :'open-search.xml'
   end
 
   get '/:year' do
     param :year, Integer
 
     case params[:year]
-    when 2010..2018
+    when 2010..2019
       redirect "/#wwdc-#{params[:year]}"
     else
       pass
