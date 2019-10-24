@@ -153,7 +153,7 @@ class Web < Sinatra::Base
   end
 
   get '/open-search.xml' do
-    headers['Content-Type'] = 'application/opensearchdescription+xml'
+    headers['Content-Type'] = 'text/xml'
 
     builder :'open-search.xml'
   end
