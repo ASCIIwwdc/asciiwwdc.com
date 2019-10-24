@@ -1,11 +1,12 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.2.3)
+    activesupport (6.0.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+      zeitwerk (~> 2.1, >= 2.1.8)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     backports (3.15.0)
@@ -93,6 +94,7 @@ GEM
     tilt (2.0.10)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+    zeitwerk (2.2.0)
 
 PLATFORMS
   ruby
@@ -118,8 +120,5 @@ DEPENDENCIES
   sinatra-contrib
   sinatra-param
 
-RUBY VERSION
-   ruby 2.4.3p205
-
 BUNDLED WITH
-   2.0.1
+   2.0.2
