@@ -5,7 +5,7 @@ class Web < Sinatra::Base
   helpers Sinatra::Param
 
   set :raise_sinatra_param_exceptions, true
-  set :show_exceptions, false
+  set :show_exceptions, !settings.production?
   set :raise_errors, true
 
   helpers do
