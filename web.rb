@@ -112,7 +112,9 @@ class Web < Sinatra::Base
   end
 
   get '/sitemap.xml' do
-    @sessions = Session.order(:year, :number).all
+    @sessions ||= Session.select(:title, :year, :number, :track)
+                         .order(:year, :number)
+                         .all
 
     respond_to do |f|
       f.xml { builder :sitemap }
