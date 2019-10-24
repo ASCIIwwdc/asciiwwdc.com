@@ -145,8 +145,6 @@ class Web < Sinatra::Base
   end
 
   get '/open-search.xml' do
-    content_type 'application/opensearchdescription+xml'
-
     builder :'open-search.xml'
   end
 
