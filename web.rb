@@ -151,10 +151,10 @@ class Web < Sinatra::Base
     builder :'sitemap.xml'
   end
 
-  get '/open-search.xml' do
+  get '/opensearch.xml' do
     headers['Content-Type'] = 'text/xml'
 
-    builder :'open-search.xml'
+    builder :'opensearch.xml'
   end
 
   get %r{/(?<year>\d{4})/} do
