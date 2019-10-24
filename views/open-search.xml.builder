@@ -3,6 +3,9 @@
 xml.instruct!
 xml.OpenSearchDescription 'xmlns' => 'http://a9.com/-/spec/opensearch/1.1/',
                           'xmlns:moz' => 'http://www.mozilla.org/2006/browser/search/' do
+  xml.InputEncoding 'UTF-8'
+  xml.OutputEncoding 'UTF-8'
+  xml.Language 'en-us'
   xml.ShortName 'ASCIIwwdc'
   xml.Image 'https://asciiwwdc.com/favicon.ico',
             'type' => 'image/x-icon',
@@ -15,13 +18,13 @@ xml.OpenSearchDescription 'xmlns' => 'http://a9.com/-/spec/opensearch/1.1/',
   xml.Url 'type' => 'application/opensearchdescription+xml',
           'rel' => 'self',
           'template' => 'https://asciiwwdc.com/open-search.xml'
-  xml.URL 'type' => 'application/rss+xml',
-          'template' => 'https://asciiwwdc.com/search.rss?q={searchTerms}'
+#   xml.URL 'type' => 'application/rss+xml',
+#           'template' => 'https://asciiwwdc.com/search.rss?q={searchTerms}'
   xml.URL 'type' => 'text/html',
+          'rel' => 'results',
           'method' => 'GET',
           'template' => 'https://asciiwwdc.com/search?q={searchTerms}'
-  xml.Language 'en-us'
-  xml.OutputEncoding 'UTF-8'
-  xml.InputEncoding 'UTF-8'
+  xml.AdultContent false
+  xml.SearchForm, 'https://asciiwwdc.com/'
   xml.tag! 'moz:SearchForm', 'https://asciiwwdc.com/'
 end
