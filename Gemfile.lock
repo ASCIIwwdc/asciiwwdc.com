@@ -1,12 +1,12 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (6.0.0)
+    activesupport (6.0.3.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-      zeitwerk (~> 2.1, >= 2.1.8)
+      zeitwerk (~> 2.2, >= 2.2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     backports (3.15.0)
@@ -26,7 +26,7 @@ GEM
       sass (>= 3.3.0, < 3.5)
     compass-import-once (1.0.5)
       sass (>= 3.2, < 3.5)
-    concurrent-ruby (1.1.5)
+    concurrent-ruby (1.1.6)
     cookiejar (0.3.3)
     em-http-request (1.1.5)
       addressable (>= 2.3.4)
@@ -42,12 +42,12 @@ GEM
       temple (>= 0.8.0)
       tilt
     http_parser.rb (0.6.0)
-    i18n (1.7.0)
+    i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     mime-types (3.3)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2019.1009)
-    minitest (5.12.2)
+    minitest (5.14.1)
     multi_json (1.14.1)
     mustermann (1.0.3)
     nio4r (2.5.2)
@@ -92,9 +92,9 @@ GEM
     temple (0.8.2)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    tzinfo (1.2.5)
+    tzinfo (1.2.7)
       thread_safe (~> 0.1)
-    zeitwerk (2.2.0)
+    zeitwerk (2.3.0)
 
 PLATFORMS
   ruby
